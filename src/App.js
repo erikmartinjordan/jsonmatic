@@ -84,13 +84,24 @@ const App = () => {
             
                 if(i > 0 && j > 0){
                     
-                    let property = table[0][j];
-                    let value    = table[i][j];
+                    let properties = table[0][j];
+                    let value      = table[i][j];
                     
-                    json[i][property] = value;
+                    let obj = json[i];
+                    
+                    properties.split('.').forEach(property => {
+                        
+                        console.log(property);
+                        console.log(obj);
+                        
+                        obj[property] = obj[property] || {};
+                        obj = obj[property];
+                        
+                    });
+                                        
+                    obj = value;
                     
                 }
-            
         }));
         
         console.log(json);

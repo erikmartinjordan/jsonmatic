@@ -25,6 +25,8 @@
     margin-top: 10px;
 }
 .Result textarea{
+    border-radius: 12px;
     height: 500px;
+    padding: 20px;
     width: 100%;
 }
