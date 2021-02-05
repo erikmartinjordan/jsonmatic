@@ -14,13 +14,13 @@ const App = () => {
     
     const [json, setJson] = useState(
         
-        `{
+        {
             "1": {
                 "road": "AP-7",
                 "coord": {
                     "lat": 42.02,
                     "lng": 2.82
-                }
+                },
                 "elem": "camera"
             },
             "2": {
@@ -28,18 +28,18 @@ const App = () => {
                 "coord": {
                     "lat": 41.35,
                     "lng": 2.09
-                }
+                },
                 "elem": "camera"
             }, 
-            "3", {
+            "3": {
                 "road": "B-20",
                 "coord": {
                     "lat": 41.44,
                     "lng": 2.18
-                }
+                },
                 "elem": "camera"
             }
-        }`
+        }
     
     );
     
@@ -85,27 +85,26 @@ const App = () => {
                 if(i > 0 && j > 0){
                     
                     let properties = table[0][j];
-                    let value      = table[i][j];
+                    let value = table[i][j];
                     
-                    let obj = json[i];
+                    let ref = json[i];
                     
-                    properties.split('.').forEach(property => {
+                    let arrayProperties = properties.split('.');
+
+                    let last = arrayProperties.pop();
+                    
+                    arrayProperties.forEach(property => {
                         
-                        console.log(property);
-                        console.log(obj);
-                        
-                        obj[property] = obj[property] || {};
-                        obj = obj[property];
+                        ref[property] = ref[property] || {};
+                        ref = ref[property];
                         
                     });
                                         
-                    obj = value;
+                    ref[last] = value;
                     
                 }
         }));
-        
-        console.log(json);
-        
+                
         setJson(json);
         
     }
@@ -113,7 +112,6 @@ const App = () => {
     return (
         <div className = 'App'>
             <div className = 'Table'>
-                <h2>Copy and paste Excel data into the table:</h2>
                 <table>
                     <tbody>
                         {table.map((row, i) => 
@@ -123,10 +121,11 @@ const App = () => {
                         )}
                     </tbody>
                 </table>
-                <button onClick = {transformToJSON}>Generate JSON</button>
+                <div className = 'Hint'>Press <kbd>ctrl</kbd> + <kbd>V</kbd> to paste data from a spreadhseet</div>
             </div>
+            <button onClick = {transformToJSON}>Generate JSON</button>
             <div className = 'Result'>
-                <textarea value = {json}/>
+                <textarea value = {JSON.stringify(json, null, 4)}/>
             </div>
         </div>
     );

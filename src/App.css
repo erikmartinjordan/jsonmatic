@@ -1,32 +1,58 @@
 .App{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
     padding: 20px;
+    width: 100%;
 }
-.Table table{
-    border: 1px solid #aaa;
+.App .Table table{
+    border: 1px solid #e1e4e8;
     border-collapse: collapse;
     border-radius: 12px;
     border-style: hidden;
-    box-shadow: 0 0 0 1px #aaa;
+    box-shadow: 0 0 0 1px #e1e4e8;
 }
-.Table table tr{
-    border: 1px solid #aaa;
+.App .Table table tr:first-child{
+    background: #f1f8ff;
 }
-.Table table td{
-    border: 1px solid #aaa;
+.App .Table table tr:first-child td{
+    border: none;
+}
+.App .Table table tr{
+    border: 1px solid #e1e4e8;
+}
+.App .Table table td{
+    border: 1px solid #e1e4e8;
     min-width: 50px;
     padding: 20px;
 }
-.Table table td input{
+.App .Table table td input{
     border: none;
     outline: none;
 }
-.Table button{
-    margin-bottom: 10px;
+.App .Hint{
     margin-top: 10px;
 }
-.Result textarea{
+.App kbd{
+    border: 1px solid lightGray;
+    border-radius: 5px;
+    padding: 5px;
+}
+.App button{
+    background: #0071e3;
+    border: none;
+    border-radius: 18px;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+.App .Result textarea{
+    border: 1px solid #e1e4e8;
     border-radius: 12px;
-    height: 500px;
+    height: 530px;
+    outline: none;
     padding: 20px;
-    width: 100%;
+    width: 500px;
 }
