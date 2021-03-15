@@ -1,9 +1,28 @@
 .App{
     align-items: center;
     display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+}
+.App h1{
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+.App p,
+.App b{
+    font-size: 17px;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+.App .Wrap{
+    align-items: center;
+    background: white;
+    border-radius: 12px;
+    display: flex;
     justify-content: space-between;
     padding: 20px;
-    width: 100%;
 }
 .App .Table table{
     border: 1px solid #e1e4e8;
@@ -26,12 +45,24 @@
     min-width: 50px;
     padding: 20px;
 }
+.App .Table table td.Selected{
+    background: #f1f8ff;
+    border: 2px solid #0071e3;
+}
 .App .Table table td input{
     border: none;
-    outline: none;
+    background: transparent;
+    width: 75px;
 }
 .App .Hint{
+    color: #586069;
+    margin-bottom: 20px;
     margin-top: 10px;
+}
+.App .Result{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 .App kbd{
     border: 1px solid lightGray;
@@ -39,20 +70,33 @@
     padding: 5px;
 }
 .App button{
+    align-items: center;
     background: #0071e3;
     border: none;
-    border-radius: 18px;
+    border-radius: 6px;
     color: white;
     cursor: pointer;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    display: flex;
+    font-weight: bold;
+    height: max-content;
+    margin: 20px;
     padding: 10px;
+    width: max-content;
 }
 .App .Result textarea{
     border: 1px solid #e1e4e8;
     border-radius: 12px;
-    height: 530px;
+    height: 500px;
     outline: none;
     padding: 20px;
     width: 500px;
+}
+.App svg.octicon.octicon-arrow-right{
+    margin-left: 5px;
+}
+.App svg.octicon.octicon-clippy{
+    margin-right: 5px;
+}
+.App .Footer{
+    margin-top: auto;
 }
