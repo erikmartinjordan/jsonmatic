@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { ArrowRightIcon, ClippyIcon } from '@primer/octicons-react';
-import { ReactComponent as Logo }     from './Logo.svg';
+import React, { useEffect, useState }                  from 'react';
+import { ArrowRightIcon, ClippyIcon, CheckCircleIcon } from '@primer/octicons-react';
+import { ReactComponent as Logo }                      from './Logo.svg';
 import './App.css';
 
 const App = () => {
@@ -8,9 +8,9 @@ const App = () => {
     const [table, setTable] = useState([
         
         ['key', 'road', 'coord.lat',  'coord.lng', 'elem'],
-        ['1',   'AP-7', 42.02,        2.82,        'camera'],
-        ['2',   'C-32', 41.35,        2.09,        'camera'],
-        ['3',   'B-20', 41.44,        2.18,        'camera'],
+        ['1',   'AP-7', 42.02,        2.82,        '🦄'],
+        ['2',   'C-32', 41.35,        2.09,        '🦧'],
+        ['3',   'B-20', 41.44,        2.18,        '🐰'],
         
     ]);
     
@@ -23,7 +23,7 @@ const App = () => {
                     "lat": 42.02,
                     "lng": 2.82
                 },
-                "elem": "camera"
+                "elem": "🦄'"
             },
             "2": {
                 "road": "C-32",
@@ -31,7 +31,7 @@ const App = () => {
                     "lat": 41.35,
                     "lng": 2.09
                 },
-                "elem": "camera"
+                "elem": "🦧"
             }, 
             "3": {
                 "road": "B-20",
@@ -39,11 +39,13 @@ const App = () => {
                     "lat": 41.44,
                     "lng": 2.18
                 },
-                "elem": "camera"
+                "elem": "🐰"
             }
         }
         
     );
+    
+    const [alert, setAlert] = useState(null);
     
     const [select, setSelect] = useState(['', '']);
     
@@ -86,9 +88,13 @@ const App = () => {
         
     }, []);
     
-    const transformToJSON = () => {
+    const transformToJSON = async () => {
+        
+        let start = Date.now();
         
         let json = {};
+        
+        setJson({'Generating JSON': 'Wait a few seconds...'});
         
         table.forEach((row, i) => 
             table[i].forEach((column, j) => {
@@ -127,6 +133,12 @@ const App = () => {
                 }
         }));
         
+        let end = Date.now();
+        
+        console.log(end - start);
+        
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
         setJson(json);
         
     }
@@ -147,14 +159,25 @@ const App = () => {
         
     }
     
+    const copyJSON = () => {
+        
+        navigator.clipboard.writeText(JSON.stringify(json, null, 4));
+        
+        setAlert('copied');
+        
+        setTimeout(() => setAlert(null), 1500);
+        
+    }
+    
     return (
         <div className = 'App'>
-            <h1>Transform a spreadhseet into a JSON</h1>
-            <p>
-                1. First column is reserved for <b>unique object keys</b><br/>
-                2. Use <b>dot notation</b> in the header to create subproperties
-            </p>
-            <div className = 'Wrap'>
+            <div className = 'Header'>
+                <Logo/>
+                <h1>jsoner – transform a spreadhseet into a JSON</h1>
+                <p>First column is reserved for <b>unique object keys</b>. You can use <b>dot notation</b> in the header cells to create subproperties.</p>
+                <p>Made by <a href = 'https://erikmartinjordan.com'><u>Erik Martín Jordán</u></a></p>
+            </div>
+            <div className = 'Content'>
                 <div className = 'Table'>
                     <table>
                         <tbody>
@@ -167,15 +190,23 @@ const App = () => {
                             )}
                         </tbody>
                     </table>
-                    <div className = 'Hint'>💡 Press <kbd>{OS === 'Mac' ? 'cmd' : 'ctrl'}</kbd> + <kbd>V</kbd> to paste data from a spreadhseet into the table</div>
+                    <div className = 'Hint'>
+                        Press <kbd>{OS === 'Mac' ? 'cmd' : 'ctrl'}</kbd> + <kbd>v</kbd> to paste data from a spreadhseet into the table
+                    </div>
                 </div>
-                <button onClick = {transformToJSON}>Generate JSON<ArrowRightIcon/></button>
+                <button onClick = {transformToJSON}>
+                    <ArrowRightIcon/>Generate JSON
+                </button>
                 <div className = 'Result'>
                     <textarea value = {JSON.stringify(json, null, 4)} readOnly = {true}/>
-                    <button><ClippyIcon/>Copy JSON</button>
+                    <button onClick = {copyJSON}>
+                        { alert !== 'copied' 
+                        ? <React.Fragment><ClippyIcon/>Copy JSON</React.Fragment>
+                        : <React.Fragment><CheckCircleIcon/>Copied</React.Fragment>
+                        }
+                    </button>
                 </div>
             </div>
-            <div className = 'Footer'>© 2021 Json, a side project from Erik Martín Jordán made in Barcelona</div>
         </div>
     );
     

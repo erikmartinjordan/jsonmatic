@@ -3,20 +3,37 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding: 20px;
 }
 .App h1{
     font-size: 30px;
     font-weight: 800;
-    margin-bottom: 8px;
+    margin-bottom: 15px;
 }
 .App p,
-.App b{
-    font-size: 17px;
+.App b,
+.App a{
+    color: #9CA3AF;
+    line-height: 1.5;
     margin-bottom: 20px;
     max-width: 500px;
+    text-align: center;
 }
-.App .Wrap{
+.App .Header{
+    align-items: center;
+    background: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 200px;
+    padding: 20px;
+    width: 100%;
+}
+.App .Header svg{
+    height: 75px;
+    width: 75px;
+}
+.App .Content{
     align-items: center;
     background: white;
     border-radius: 12px;
@@ -24,12 +41,17 @@
     justify-content: space-between;
     padding: 20px;
 }
+.App .Table{
+    border: 1px solid #e1e4e8;
+    border-radius: 12px;
+    max-height: 500px;
+    overflow-y: auto;
+}
 .App .Table table{
     border: 1px solid #e1e4e8;
     border-collapse: collapse;
-    border-radius: 12px;
     border-style: hidden;
-    box-shadow: 0 0 0 1px #e1e4e8;
+    width: 100%;
 }
 .App .Table table tr:first-child{
     background: #f1f8ff;
@@ -55,9 +77,10 @@
     width: 75px;
 }
 .App .Hint{
+    border-top: 1px solid #e1e4e8;
     color: #586069;
-    margin-bottom: 20px;
-    margin-top: 10px;
+    font-size: 15px;
+    padding: 20px;
 }
 .App .Result{
     align-items: center;
@@ -65,9 +88,12 @@
     flex-direction: column;
 }
 .App kbd{
+    background: lightGray;
     border: 1px solid lightGray;
     border-radius: 5px;
-    padding: 5px;
+    font-family: monospace;
+    font-weight: bold;
+    padding: 2px 5px;
 }
 .App button{
     align-items: center;
@@ -83,18 +109,24 @@
     padding: 10px;
     width: max-content;
 }
+.App button:hover{
+    background: #0065cc;
+    transition: 0.2s ease-in-out;
+}
 .App .Result textarea{
     border: 1px solid #e1e4e8;
     border-radius: 12px;
-    height: 500px;
+    height: 590px;
     outline: none;
     padding: 20px;
-    width: 500px;
+    width: 590px;
 }
-.App svg.octicon.octicon-arrow-right{
-    margin-left: 5px;
+.App .Alert{
+    position: fixed;
+    right: 20px;
+    top: 20px;
 }
-.App svg.octicon.octicon-clippy{
+.App svg.octicon{
     margin-right: 5px;
 }
 .App .Footer{
