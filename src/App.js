@@ -67,7 +67,9 @@ const App = () => {
                     json    = {json}
                 />
             </div>
-            <CtrlVListener/>
+            <CtrlVListener
+                    setCsv  = {setCsv}
+            />
         </div>
     );
     
