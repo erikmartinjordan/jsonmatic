@@ -1,6 +1,6 @@
-import React, { useEffect, useState }                  from 'react';
-import { ArrowRightIcon, ClippyIcon, CheckCircleIcon } from '@primer/octicons-react';
-import { ReactComponent as Logo }                      from './Logo.svg';
+import React, { useEffect, useState }                             from 'react';
+import { ArrowRightIcon, ClippyIcon, CheckCircleIcon, HeartIcon } from '@primer/octicons-react';
+import { ReactComponent as Logo }                                 from './Logo.svg';
 import './App.css';
 
 const App = () => {
@@ -171,11 +171,14 @@ const App = () => {
     
     return (
         <div className = 'App'>
+            <div className = 'Subheader'>
+                Become a sponsor and help the project <button><HeartIcon fill = "#ea4aaa"/>Sponsor</button>
+            </div>
             <div className = 'Header'>
                 <Logo/>
-                <h1>jsonmatic – transform a spreadhseet into a JSON</h1>
+                <h1>jsonmatic – transform a CSV into a JSON</h1>
                 <p>First column is reserved for <b>unique object keys</b>. You can use <b>dot notation</b> in the header cells to create subproperties.</p>
-                <p>Made by <a href = 'https://erikmartinjordan.com'><u>Erik Martín Jordán</u></a></p>
+                <p>Made by <a href = 'https://erikmartinjordan.com'><u>Erik Martín Jordán</u></a>, see it on <a href = 'https://github.com/erikmartinjordan/spreadsheet-json'>GitHub</a></p>
             </div>
             <div className = 'Content'>
                 <div className = 'Table'>

@@ -4,6 +4,22 @@
     flex-direction: column;
     min-height: 100vh;
 }
+.App .Subheader{
+    font-size: 14px;
+    padding: 10px;
+}
+.App .Subheader button{
+    background: white;
+    border: 2px solid #9CA3AF;
+    color: black;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0;
+}
+.App .Subheader button:hover{
+    background: #9CA3AF;
+    transition: 0.2s ease-in-out;
+}
 .App h1{
     font-size: 30px;
     font-weight: 800;
