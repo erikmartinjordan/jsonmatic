@@ -173,7 +173,7 @@ const App = () => {
         <div className = 'App'>
             <div className = 'Header'>
                 <Logo/>
-                <h1>jsoner – transform a spreadhseet into a JSON</h1>
+                <h1>jsonmatic – transform a spreadhseet into a JSON</h1>
                 <p>First column is reserved for <b>unique object keys</b>. You can use <b>dot notation</b> in the header cells to create subproperties.</p>
                 <p>Made by <a href = 'https://erikmartinjordan.com'><u>Erik Martín Jordán</u></a></p>
             </div>
