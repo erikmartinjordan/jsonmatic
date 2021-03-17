@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-const Table = ({csv, setCsv}) => {
+const Table = ({csv, setCsv, select, setSelect}) => {
     
-    const [OS, setOS]         = useState(null);
-    const [select, setSelect] = useState(['', '']);
+    const [OS, setOS] = useState(null);
     
     useEffect(() => {
         
@@ -35,7 +34,7 @@ const Table = ({csv, setCsv}) => {
     }
     
     return(
-        <div className = 'Table'>
+        <div className = 'Table' id = 'Table'>
             <table>
                 <tbody>
                     {csv.map((row, i) => 

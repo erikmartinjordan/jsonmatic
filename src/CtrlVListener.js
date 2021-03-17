@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
-const CtrlVListener = ({setCsv}) => {
+const CtrlVListener = ({select, setSelect, setCsv}) => {
     
     useEffect(() => {
         
@@ -8,13 +8,17 @@ const CtrlVListener = ({setCsv}) => {
             
             if((e.ctrlKey && e.key === 'v') || (e.metaKey && e.key === 'v')){
                 
-                e.preventDefault();
-                
-                let text  = await navigator.clipboard.readText();
-                
-                let split = text.split('\n').map(row => row.split('\t'));
-                
-                setCsv(split);
+                if(select.every(val => val === '')){
+                    
+                    e.preventDefault();
+                    
+                    let text  = await navigator.clipboard.readText();
+                    
+                    let split = text.split('\n').map(row => row.split('\t'));
+                    
+                    setCsv(split);
+                    
+                }
                 
             }
             
@@ -24,7 +28,22 @@ const CtrlVListener = ({setCsv}) => {
         
         return () => window.removeEventListener('keydown', onDown);
         
-    }, []);
+    }, [select]);
+    
+    useEffect(() => {
+        
+        const onClick = async (e) => {
+            
+            if(!document.getElementById('Table').contains(e.target))
+                setSelect(['', '']);
+            
+        }
+        
+        window.addEventListener('click', onClick);
+        
+        return () => window.removeEventListener('click', onClick);
+      
+    }, [select]);
     
     return null;
     

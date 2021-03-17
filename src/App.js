@@ -49,14 +49,18 @@ const App = () => {
         
     );
     
+    const [select, setSelect] = useState(['', '']);
+    
     return (
         <div className = 'App'>
             <Subheader/>
             <Header/>
             <div className = 'Content'>
                 <Table 
-                    csv     = {csv}
-                    setCsv  = {setCsv}
+                    csv       = {csv}
+                    setCsv    = {setCsv}
+                    select    = {select}
+                    setSelect = {setSelect}
                 />
                 <TransformButton
                     csv     = {csv}
@@ -68,7 +72,9 @@ const App = () => {
                 />
             </div>
             <CtrlVListener
-                    setCsv  = {setCsv}
+                setCsv      = {setCsv}
+                select      = {select}
+                setSelect   = {setSelect}    
             />
         </div>
     );
