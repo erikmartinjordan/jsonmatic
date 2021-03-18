@@ -1,5 +1,7 @@
 import React, { useState }                           from 'react';
 import IndentSelector                                from './IndentSelector';
+import BeautifyButton                                from './BeautifyButton';
+import UglifyButton                                  from './UglifyButton';
 import { saveAs }                                    from 'file-saver';
 import { ClippyIcon, CheckCircleIcon, DownloadIcon } from '@primer/octicons-react';
 
@@ -37,11 +39,21 @@ const Result = ({json}) => {
     
     return(
         <div className = 'Result'>
-            <IndentSelector
-                indent    = {indent}
-                setIndent = {setIndent}
-            />
-            <textarea value = {JSON.stringify(json, null, parseInt(indent))} readOnly = {true}/>
+            <div className = 'Options'>
+                <BeautifyButton 
+                    indent    = {indent}
+                    setIndent = {setIndent}
+                />
+                <UglifyButton
+                    indent    = {indent}
+                    setIndent = {setIndent}
+                />
+                <IndentSelector
+                    indent    = {indent}
+                    setIndent = {setIndent}
+                />
+            </div>
+            <textarea value = {JSON.stringify(json, null, parseInt(indent))}/>
             <div className = 'Actions'>
                 <button onClick = {copy}>    { alert !== 'copied'     ? <><ClippyIcon/>Copy JSON</>       : <><CheckCircleIcon/>Copied</>}</button>
                 <button onClick = {download}>{ alert !== 'downloaded' ? <><DownloadIcon/>Download JSON</> : <><CheckCircleIcon/>Downloading</>}</button>
