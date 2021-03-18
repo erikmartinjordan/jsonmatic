@@ -17,6 +17,21 @@ const Table = ({csv, setCsv, select, setSelect}) => {
         
     }, []);
     
+    useEffect(() => {
+        
+        const onClick = async (e) => {
+            
+            if(!document.getElementById('Table').contains(e.target))
+                setSelect(['', '']);
+            
+        }
+        
+        window.addEventListener('click', onClick);
+        
+        return () => window.removeEventListener('click', onClick);
+      
+    }, [select]);
+    
     const selectBox = (row, column) => {
         
         setSelect([row, column]);

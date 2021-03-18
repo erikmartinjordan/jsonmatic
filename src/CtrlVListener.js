@@ -30,21 +30,6 @@ const CtrlVListener = ({select, setSelect, setCsv}) => {
         
     }, [select]);
     
-    useEffect(() => {
-        
-        const onClick = async (e) => {
-            
-            if(!document.getElementById('Table').contains(e.target))
-                setSelect(['', '']);
-            
-        }
-        
-        window.addEventListener('click', onClick);
-        
-        return () => window.removeEventListener('click', onClick);
-      
-    }, [select]);
-    
     return null;
     
 }

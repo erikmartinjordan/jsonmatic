@@ -53,7 +53,7 @@ const Result = ({json}) => {
                     setIndent = {setIndent}
                 />
             </div>
-            <textarea value = {JSON.stringify(json, null, parseInt(indent))}/>
+            <textarea value = {JSON.stringify(json, null, parseInt(indent))} readOnly = {true}/>
             <div className = 'Actions'>
                 <button onClick = {copy}>    { alert !== 'copied'     ? <><ClippyIcon/>Copy JSON</>       : <><CheckCircleIcon/>Copied</>}</button>
                 <button onClick = {download}>{ alert !== 'downloaded' ? <><DownloadIcon/>Download JSON</> : <><CheckCircleIcon/>Downloading</>}</button>

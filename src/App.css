@@ -85,7 +85,7 @@
 }
 .App .Table table td.Selected{
     background: #f1f8ff;
-    border: 2px solid #0071e3;
+    border: 2px solid #0071e3!important;
 }
 .App .Table table td input{
     border: none;
