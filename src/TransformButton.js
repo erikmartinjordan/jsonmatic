@@ -9,7 +9,7 @@ const TransformButton = ({csv, json, setJson}) => {
         
         setJson({'Generating JSON': 'Wait a few seconds...'});
         
-        csv.forEach((row, i) => 
+        csv.forEach((row, i) => {
             csv[i].forEach((column, j) => {
                 
                 if(i > 0 && j === 0){
@@ -25,7 +25,7 @@ const TransformButton = ({csv, json, setJson}) => {
                     let properties = csv[0][j];
                     let value = csv[i][j];
                     
-                    let lastKey = Object.keys(json)[i - 1];
+                    let lastKey = Object.keys(json).pop();
                     let ref = json[lastKey];
                     
                     let arrayProperties = properties.split('.');
@@ -44,11 +44,23 @@ const TransformButton = ({csv, json, setJson}) => {
                     ref[last] = stringOrNumber || '';
                     
                 }
-        }));
+            })
+        });
+        
+        let duplicateKeys = Object.keys(json).length !== csv.length - 1;
         
         await new Promise(resolve => setTimeout(resolve, 1000));
         
-        setJson(json);
+        if(duplicateKeys){
+            
+            setJson({'Error': 'JSON has duplicate keys'});
+            
+        }
+        else{
+            
+            setJson(json);
+            
+        }
         
     }
     
