@@ -25,7 +25,7 @@ jobs:
 
       # Install npm
       - name: Installing npm 
-        run: npm install && cd functions && npm install
+        run: npm install
 
       # Build the project
       - name: Build project
