@@ -129,3 +129,80 @@ test('Transforms a CSV into a JSON correctly', async () => {
     await waitFor(() => expect(screen.getByText(JSON.stringify(json), {exact: false})).toBeInTheDocument());
     
 });
+
+test('Copies JSON into the clipboard', async () => {
+    
+    let csv = [
+        
+        ['key', 'road', 'coord.lat',  'coord.lng', 'elem'],
+        ['1',   'AP-7', 42.02,        2.82,        '🦄'],
+        ['2',   'C-32', 41.35,        2.09,        '🦧']
+        
+    ].map(e => e.join(`\t`)).join(`\n`);
+    
+    let json = {
+        
+        "1": {
+            "road": "AP-7",
+            "coord": {
+                "lat": 42.02,
+                "lng": 2.82
+            },
+            "elem": "🦄"
+        },
+        "2": {
+            "road": "C-32",
+            "coord": {
+                "lat": 41.35,
+                "lng": 2.09
+            },
+            "elem": "🦧"
+        }
+        
+    };
+    
+    Object.assign(navigator, {
+        clipboard: {
+            readText: ()  => csv,
+            writeText: () => json
+        }
+    });
+    
+    await render(<App />);
+    
+    document.dispatchEvent(
+        new KeyboardEvent("keydown", {
+            key: "v",
+            ctrlKey: true,
+            bubbles: true,
+            metaKey: true   
+        })
+    );
+    
+    await waitFor(() => expect(screen.getByDisplayValue('AP-7')).toBeInTheDocument()); 
+    
+    fireEvent.click(screen.getByText('Generate JSON'));
+    
+    await waitFor(() => expect(screen.getByText('Wait a few seconds...', {exact: false})).toBeInTheDocument());
+    
+    fireEvent.click(screen.getByText('Uglify'));
+    
+    await waitFor(() => expect(screen.getByText(JSON.stringify(json), {exact: false})).toBeInTheDocument());
+    
+    fireEvent.click(screen.getByText('Copy JSON'));
+    
+    await waitFor(() => expect(screen.getByText('Copied', {exact: false})).toBeInTheDocument());
+    
+});
+
+test('Downloads the file', async () => {
+    
+    window.URL.createObjectURL = jest.fn();
+    
+    await render(<App />);
+    
+    fireEvent.click(screen.getByText('Download JSON'));
+    
+    await waitFor(() => expect(screen.getByText('Downloading', {exact: false})).toBeInTheDocument());
+    
+});
