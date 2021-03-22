@@ -39,4 +39,4 @@ jobs:
         
       # Firebase deploy
       - name: Firebase deploy
-        run: npm install -g firebase-tools && firebase deploy --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSONMATIC_PRO }}
+        run: npm install -g firebase-tools && firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
