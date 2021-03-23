@@ -1,5 +1,18 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import App                                    from './App';
+import firebase, { environment }              from './Firebase';
+
+beforeEach(() => {
+    
+    jest.spyOn(firebase, 'firestore').mockImplementation(() => ({
+        
+        collection:   jest.fn().mockReturnThis(),
+        doc:          jest.fn().mockReturnThis(),
+        set:          jest.fn().mockReturnThis()
+        
+    }));
+    
+});
 
 test('Paste CSV displays table correctly', async () => {
     
@@ -204,5 +217,11 @@ test('Downloads the file', async () => {
     fireEvent.click(screen.getByText('Download JSON'));
     
     await waitFor(() => expect(screen.getByText('Downloading', {exact: false})).toBeInTheDocument());
+    
+});
+
+test('App is in PRO', async () => {
+    
+    expect(environment).toBe('PRO');
     
 });

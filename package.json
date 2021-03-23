@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fingerprintjs/fingerprintjs": "^3.0.6",
     "@primer/octicons-react": "^12.1.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "file-saver": "^2.0.5",
+    "firebase": "^8.3.1",
+    "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-data-grid": "^7.0.0-canary.36",
     "react-dom": "^17.0.1",
@@ -37,5 +40,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

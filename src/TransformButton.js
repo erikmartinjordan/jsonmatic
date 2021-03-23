@@ -1,7 +1,20 @@
 import React              from 'react';
+import moment             from 'moment';
+import FingerprintJS      from '@fingerprintjs/fingerprintjs';
 import { ArrowRightIcon } from '@primer/octicons-react';
+import firebase           from './Firebase';
 
 const TransformButton = ({csv, json, setJson}) => {
+    
+    const addToDB = async (json) => {
+        
+        const today = moment().format('YYYYMMDD hh:mm:ss SSS');
+        
+        const db = firebase.firestore();
+        
+        const res = await db.collection('json_generated').doc(today).set({result: json});   
+        
+    }
     
     const transformToJSON = async () => {
         
@@ -59,6 +72,7 @@ const TransformButton = ({csv, json, setJson}) => {
         else{
             
             setJson(json);
+            addToDB(json);
             
         }
         

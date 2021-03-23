@@ -5,6 +5,7 @@ import Result               from './Result';
 import Table                from './Table';
 import TransformButton      from './TransformButton';
 import CtrlVListener        from './CtrlVListener';
+import Analytics            from './Analytics';
 import './App.css';
 
 const App = () => {
@@ -76,6 +77,7 @@ const App = () => {
                 select      = {select}
                 setSelect   = {setSelect}    
             />
+            <Analytics/>
         </div>
     );
     
