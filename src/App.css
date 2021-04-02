@@ -202,3 +202,27 @@ select {
 select::-ms-expand {
     display: none;
 }
+
+/*
+ * 
+ * Menu
+ * 
+ * 
+ */
+.Menu{
+    background: white;
+    border-radius: 10px;
+    box-shadow: rgb(15 15 15/10%) 0px 0px 0px 1px,rgb(15 15 15/20%) 0px 5px 10px,rgb(15 15 15/40%) 0px 15px 40px;
+    overflow: hidden;
+}
+.Menu ul{
+    padding: 0;
+}
+.Menu ul li{
+    cursor: pointer;
+    list-style-type: none;
+    padding: 10px 20px;
+}
+.Menu ul li:hover{
+    background: rgba(1, 1, 1, 0.1);
+}

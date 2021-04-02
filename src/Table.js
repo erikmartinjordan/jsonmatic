@@ -54,7 +54,7 @@ const Table = ({csv, setCsv, select, setSelect}) => {
                 <tbody>
                     {csv.map((row, i) => 
                         <tr key = {i}>{csv[i].map((column, j) => 
-                            <td key = {j} onClick = {() => selectBox(i, j)} className = {i === select[0] && j === select[1] ? 'Selected' : ''}>
+                            <td key = {j} onClick = {() => selectBox(i, j)} onContextMenu = {() => selectBox(i, j)}  className = {i === select[0] && j === select[1] ? 'Selected' : ''}>
                                 <input value = {csv[i][j]} onChange = {(e) => editValue(e, i, j)}></input>
                             </td>)}
                         </tr>

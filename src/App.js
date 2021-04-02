@@ -4,7 +4,7 @@ import Header               from './Header';
 import Result               from './Result';
 import Table                from './Table';
 import TransformButton      from './TransformButton';
-import CtrlVListener        from './CtrlVListener';
+import Menu                 from './Menu';
 import Analytics            from './Analytics';
 import './App.css';
 
@@ -72,7 +72,8 @@ const App = () => {
                     json    = {json}
                 />
             </div>
-            <CtrlVListener
+            <Menu
+                csv         = {csv}
                 setCsv      = {setCsv}
                 select      = {select}
                 setSelect   = {setSelect}    
