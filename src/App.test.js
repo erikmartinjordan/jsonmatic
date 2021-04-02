@@ -89,7 +89,9 @@ test('Transforms a CSV into a JSON correctly', async () => {
         
         ['key', 'road', 'coord.lat',  'coord.lng', 'elem'],
         ['1',   'AP-7', 42.02,        2.82,        '🦄'],
-        ['2',   'C-32', 41.35,        2.09,        '🦧']
+        ['2',   'C-32', 41.35,        2.09,        '🦧'],
+        ['3',   'B-20', 41.44,        2.18,        '🐰'],
+        ['4',   'AP-7', 41.42,        2.10,        '🦊']
         
     ].map(e => e.join(`\t`)).join(`\n`);
     
@@ -110,6 +112,23 @@ test('Transforms a CSV into a JSON correctly', async () => {
                 "lng": 2.09
             },
             "elem": "🦧"
+        },
+        "3": {
+            "road": "B-20",
+            "coord": {
+                "lat": 41.44,
+                "lng": 2.18
+            },
+            "elem": "🐰"
+        }
+        ,
+        "4": {
+            "road": "AP-7",
+            "coord": {
+                "lat": 41.42,
+                "lng": 2.10
+            },
+            "elem": "🦊"
         }
         
     };
@@ -149,7 +168,9 @@ test('Copies JSON into the clipboard', async () => {
         
         ['key', 'road', 'coord.lat',  'coord.lng', 'elem'],
         ['1',   'AP-7', 42.02,        2.82,        '🦄'],
-        ['2',   'C-32', 41.35,        2.09,        '🦧']
+        ['2',   'C-32', 41.35,        2.09,        '🦧'],
+        ['3',   'B-20', 41.44,        2.18,        '🐰'],
+        ['4',   'AP-7', 41.42,        2.10,        '🦊']
         
     ].map(e => e.join(`\t`)).join(`\n`);
     
@@ -170,6 +191,23 @@ test('Copies JSON into the clipboard', async () => {
                 "lng": 2.09
             },
             "elem": "🦧"
+        },
+        "3": {
+            "road": "B-20",
+            "coord": {
+                "lat": 41.44,
+                "lng": 2.18
+            },
+            "elem": "🐰"
+        }
+        ,
+        "4": {
+            "road": "AP-7",
+            "coord": {
+                "lat": 41.42,
+                "lng": 2.10
+            },
+            "elem": "🦊"
         }
         
     };
