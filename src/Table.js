@@ -77,18 +77,18 @@ const Table = ({csv, setCsv, select, setSelect}) => {
     
     const getClassName = (row, col) => {
         
-        let startRow = select[0];
-        let startCol = select[1];
-        let endRow   = select[2];
-        let endCol   = select[3];
+        let iniRow = select[0];
+        let iniCol = select[1];
+        let endRow = select[2];
+        let endCol = select[3];
         
         if(select.every(el => el === ''))                                             
             return '';
         
-        if(row >= startRow && row <= endRow && col >= startCol && col <= endCol) 
+        if(row >= iniRow && row <= endRow && col >= iniCol && col <= endCol) 
             return 'Selected';
         
-        if(row <= startRow && row >= endRow && col <= startCol && col >= endCol) 
+        if(row <= iniRow && row >= endRow && col <= iniCol && col >= endCol) 
             return 'Selected';
         
     }

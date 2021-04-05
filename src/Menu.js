@@ -102,14 +102,27 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
         
     }
     
-    const deleteValue = () => {
+    const deleteValues = () => {
         
         let temp = [...csv];
         
-        let row = select[0];
-        let col = select[1];
+        let iniRow = select[0];
+        let iniCol = select[1];
+        let endRow = select[2];
+        let endCol = select[3];
         
-        temp[row][col] = '';
+        if(iniRow >= endRow && iniCol >= endCol) {
+            
+            iniRow = select[2];
+            iniCol = select[3];
+            endRow = select[0];
+            endCol = select[1];
+            
+        }
+        
+        for(let i = iniRow; i <= endRow; i ++)
+            for(let j = iniCol; j <= endCol; j ++)
+                temp[i][j] = '';
         
         setCsv(temp);
         
@@ -129,7 +142,7 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
             
             if(e.key === 'Delete'){
                 
-                deleteValue();
+                deleteValues();
                 
             }
             
