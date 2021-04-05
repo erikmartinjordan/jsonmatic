@@ -50,7 +50,7 @@ const App = () => {
         
     );
     
-    const [select, setSelect] = useState([0, 0]);
+    const [select, setSelect] = useState(['', '', '', '']);
     
     return (
         <div className = 'App'>
