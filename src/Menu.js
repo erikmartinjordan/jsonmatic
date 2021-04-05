@@ -34,6 +34,31 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
         
     }
     
+    const addRow = () => {
+        
+        let temp = [...csv];
+        
+        let row = Array(temp[0].length).fill('');
+        
+        temp.splice(select[0], 0, row);
+        
+        setCsv(temp);
+        setMenu(false);
+        
+        
+    }
+    
+    const addCol = () => {
+        
+        let temp = [...csv];
+        
+        temp.forEach(row => row.splice(select[1] + 1, 0, ''));
+        
+        setCsv(temp);
+        setMenu(false);
+        
+    }
+    
     const deleteRow = () => {
         
         let temp = [...csv];
@@ -53,6 +78,7 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
         
         setCsv(temp);
         setMenu(false);
+        
     }
     
     useEffect(() => {
@@ -121,6 +147,9 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
             { menu
             ? <div className = 'Menu' style = {{position: 'absolute', top: pos.y, left: pos.x}}>
                 <ul>
+                    <li onClick = {addRow}>Add row</li>
+                    <li onClick = {addCol}>Add column</li>
+                    <hr></hr>
                     <li onClick = {deleteRow}>Delete row</li>
                     <li onClick = {deleteCol}>Delete column</li>
                 </ul>  
