@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState }           from 'react';
+import { CopyIcon, ClippyIcon, EllipsisIcon  }  from '@primer/octicons-react';
+
 
 const Menu = ({select, setSelect, csv, setCsv}) => {
     
@@ -31,6 +33,25 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
         }
         
         setCsv(merged);
+        
+    }
+    
+    const copy = () => {
+        
+        let row = select[0];
+        let column = select[1];
+        
+        navigator.clipboard.writeText(csv[row][column]);
+        
+    }
+    
+    const paste = async () => {
+        
+        let clipboard = await navigator.clipboard.readText();
+        
+        clipboard = clipboard.split('\n').map(row => row.split('\t'));
+        
+        merge(csv, clipboard, select[0], select[1]); 
         
     }
     
@@ -89,11 +110,7 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
                 
                 e.preventDefault();
                 
-                let clipboard = await navigator.clipboard.readText();
-                
-                clipboard = clipboard.split('\n').map(row => row.split('\t'));
-                
-                merge(csv, clipboard, select[0], select[1]);    
+                paste();  
                 
             }
             
@@ -119,7 +136,7 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
                 
                 e.preventDefault();
                 
-                setPos({x: e.clientX, y: e.clientY + 50});
+                setPos({x: e.clientX, y: e.clientY + 100});
                 setMenu(true);
                 
                 window.addEventListener('click', onLeftClick);
@@ -147,8 +164,11 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
             { menu
             ? <div className = 'Menu' style = {{position: 'absolute', top: pos.y, left: pos.x}}>
                 <ul>
-                    <li onClick = {addRow}>Add row</li>
-                    <li onClick = {addCol}>Add column</li>
+                    <li onClick = {copy}><CopyIcon/>Copy</li>
+                    <li onClick = {paste}><ClippyIcon/>Paste</li>
+                    <hr></hr>
+                    <li onClick = {addRow}><EllipsisIcon/>Add row</li>
+                    <li onClick = {addCol}><span style = {{transform: 'rotate(90deg)'}}><EllipsisIcon/></span>Add column</li>
                     <hr></hr>
                     <li onClick = {deleteRow}>Delete row</li>
                     <li onClick = {deleteCol}>Delete column</li>

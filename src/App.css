@@ -219,10 +219,18 @@ select::-ms-expand {
     padding: 0;
 }
 .Menu ul li{
+    align-items: center;
     cursor: pointer;
+    display: flex;
     list-style-type: none;
     padding: 10px 20px;
 }
 .Menu ul li:hover{
     background: rgba(1, 1, 1, 0.1);
+}
+.Menu hr{
+    border :0;
+    border-top: 1px solid #e1e4e8;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
