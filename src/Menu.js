@@ -73,6 +73,18 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
             
         }
         
+        const onLeftClick = (e) => {
+            
+            let menu = document.getElementById('Menu');
+            
+            if(!menu || !menu.contains(e.target)){
+                
+                setMenu(false);
+                
+            }
+            
+        }
+        
         const onRightClick = (e) => {
             
             let table = document.getElementById('Table');
@@ -81,8 +93,10 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
                 
                 e.preventDefault();
                 
-                setPos({x: e.clientX, y: e.clientY + 100});
+                setPos({x: e.clientX, y: e.clientY + 50});
                 setMenu(true);
+                
+                window.addEventListener('click', onLeftClick);
                 
             }   
             
@@ -90,11 +104,13 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
         
         window.addEventListener('keydown',     onDown);
         window.addEventListener('contextmenu', onRightClick);
+        window.addEventListener('click',       onLeftClick);
         
         return () => {
             
-            window.removeEventListener('keydown', onDown);
-            window.addEventListener('contextmenu', onRightClick);
+            window.removeEventListener('keydown',     onDown);
+            window.removeEventListener('contextmenu', onRightClick);
+            window.removeEventListener('click',       onLeftClick);
             
         }
         
