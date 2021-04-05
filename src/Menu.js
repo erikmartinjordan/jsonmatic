@@ -39,9 +39,9 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
     const copy = () => {
         
         let row = select[0];
-        let column = select[1];
+        let col = select[1];
         
-        navigator.clipboard.writeText(csv[row][column]);
+        navigator.clipboard.writeText(csv[row][col]);
         
     }
     
@@ -102,6 +102,19 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
         
     }
     
+    const deleteValue = () => {
+        
+        let temp = [...csv];
+        
+        let row = select[0];
+        let col = select[1];
+        
+        temp[row][col] = '';
+        
+        setCsv(temp);
+        
+    }
+    
     useEffect(() => {
         
         const onDown = async (e) => {
@@ -111,6 +124,12 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
                 e.preventDefault();
                 
                 paste();  
+                
+            }
+            
+            if(e.key === 'Delete'){
+                
+                deleteValue();
                 
             }
             
