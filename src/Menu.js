@@ -80,22 +80,26 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
         
     }
     
-    const deleteRow = () => {
+    const deleteRows = () => {
         
         let temp = [...csv];
         
-        temp.splice(select[0], 1);
+        let [iniRow, iniCol, endRow, endCol] = select;
+        
+        temp.splice(iniRow, endRow - iniRow + 1);
         
         setCsv(temp);
         setMenu(false);
         
     }
     
-    const deleteCol = () => {
+    const deleteCols = () => {
         
         let temp = [...csv];
         
-        temp.forEach(row => row.splice(select[1], 1));
+        let [iniRow, iniCol, endRow, endCol] = select;
+        
+        temp.forEach(row => row.splice(iniCol, endCol - iniCol + 1));
         
         setCsv(temp);
         setMenu(false);
@@ -105,20 +109,7 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
     const deleteValues = () => {
         
         let temp = [...csv];
-        
-        let iniRow = select[0];
-        let iniCol = select[1];
-        let endRow = select[2];
-        let endCol = select[3];
-        
-        if(iniRow >= endRow && iniCol >= endCol) {
-            
-            iniRow = select[2];
-            iniCol = select[3];
-            endRow = select[0];
-            endCol = select[1];
-            
-        }
+        let [iniRow, iniCol, endRow, endCol] = select;
         
         for(let i = iniRow; i <= endRow; i ++)
             for(let j = iniCol; j <= endCol; j ++)
@@ -202,8 +193,8 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
                     <li onClick = {addRow}><EllipsisIcon/>Add row</li>
                     <li onClick = {addCol}><span style = {{transform: 'rotate(90deg)'}}><EllipsisIcon/></span>Add column</li>
                     <hr></hr>
-                    <li onClick = {deleteRow}>Delete row</li>
-                    <li onClick = {deleteCol}>Delete column</li>
+                    <li onClick = {deleteRows}>Delete row(s)</li>
+                    <li onClick = {deleteCols}>Delete column(s)</li>
                 </ul>  
               </div>
             : null
