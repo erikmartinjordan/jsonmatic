@@ -58,9 +58,14 @@ const Table = ({csv, setCsv, select, setSelect}) => {
         
         if(drag){
             
-            let prev = [...select];
+            let [iniRow, iniCol, endRow, endCol] = select;
             
-            setSelect([prev[0], prev[1], row, col])
+            if(iniRow <= row && iniCol <= col)
+                setSelect([iniRow, iniCol, row, col]);
+            
+            if(iniRow >= row && iniCol >= col)
+                setSelect([row, col, endRow, endCol])
+            
         }
         
     }
@@ -77,18 +82,12 @@ const Table = ({csv, setCsv, select, setSelect}) => {
     
     const getClassName = (row, col) => {
         
-        let iniRow = select[0];
-        let iniCol = select[1];
-        let endRow = select[2];
-        let endCol = select[3];
+        let [iniRow, iniCol, endRow, endCol] = select;
         
         if(select.every(el => el === ''))                                             
             return '';
         
         if(row >= iniRow && row <= endRow && col >= iniCol && col <= endCol) 
-            return 'Selected';
-        
-        if(row <= iniRow && row >= endRow && col <= iniCol && col >= endCol) 
             return 'Selected';
         
     }
