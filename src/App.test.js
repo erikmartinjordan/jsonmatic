@@ -33,6 +33,10 @@ test('Paste CSV displays table correctly', async () => {
     
     await render(<App />);
     
+    fireEvent.click(screen.getByDisplayValue('key'));
+    
+    await waitFor(() => expect(document.getElementById(0)).toHaveClass('Selected'));
+    
     document.dispatchEvent(
         new KeyboardEvent("keydown", {
             key: "v",
@@ -65,6 +69,10 @@ test('Duplicate key displays an error', async () => {
     });
     
     await render(<App />);
+    
+    fireEvent.click(screen.getByDisplayValue('key'));
+    
+    await waitFor(() => expect(document.getElementById(0)).toHaveClass('Selected'));
     
     document.dispatchEvent(
         new KeyboardEvent("keydown", {
@@ -140,6 +148,10 @@ test('Transforms a CSV into a JSON correctly', async () => {
     });
     
     await render(<App />);
+    
+    fireEvent.click(screen.getByDisplayValue('key'));
+    
+    await waitFor(() => expect(document.getElementById(0)).toHaveClass('Selected'));
     
     document.dispatchEvent(
         new KeyboardEvent("keydown", {
@@ -220,6 +232,10 @@ test('Copies JSON into the clipboard', async () => {
     });
     
     await render(<App />);
+    
+    fireEvent.click(screen.getByDisplayValue('key'));
+    
+    await waitFor(() => expect(document.getElementById(0)).toHaveClass('Selected'));
     
     document.dispatchEvent(
         new KeyboardEvent("keydown", {
