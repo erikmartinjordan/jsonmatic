@@ -41,8 +41,15 @@ const Table = ({csv, setCsv, select, setSelect}) => {
     
     const handleMouseDown = (e, row, col) => {
         
+        let [iniRow, iniCol, endRow, endCol] = select;
+        
+        if(e.button === 0){
+            
+            setSelect([row, col, row, col]);
+            
+        }
+        
         setDrag(true);
-        setSelect([row, col, row, col]);
         
     }
     
@@ -100,8 +107,7 @@ const Table = ({csv, setCsv, select, setSelect}) => {
                         <tr key = {i}>{csv[i].map((column, j) => 
                             <td key           = {j}
                                 id            = {i, j}
-                                onClick       = {()  => selectBox(i, j)} 
-                                onContextMenu = {()  => selectBox(i, j)}
+                                onClick       = {(e) => selectBox(i, j)}
                                 onMouseDown   = {(e) => handleMouseDown(e, i, j)}
                                 onMouseUp     = {(e) => handleMouseUp(e, i, j)}
                                 onMouseMove   = {(e) => handleMultipleSel(e, i, j)}
@@ -113,7 +119,7 @@ const Table = ({csv, setCsv, select, setSelect}) => {
                 </tbody>
             </table>
             <div className = 'Hint'>
-                Press <kbd>{OS === 'Mac' ? 'cmd' : 'ctrl'}</kbd> + <kbd>v</kbd> to paste data from a spreadhseet into the table
+                Select a cell and press <kbd>{OS === 'Mac' ? 'cmd' : 'ctrl'}</kbd> + <kbd>v</kbd> to paste data from a spreadhseet into the table
             </div>
         </div>
     );
