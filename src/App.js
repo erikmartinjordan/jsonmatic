@@ -6,6 +6,7 @@ import Table                from './Table';
 import TransformButton      from './TransformButton';
 import Menu                 from './Menu';
 import Analytics            from './Analytics';
+import UndoRedo             from './UndoRedo';
 import './App.css';
 
 const App = () => {
@@ -77,6 +78,11 @@ const App = () => {
                 setCsv      = {setCsv}
                 select      = {select}
                 setSelect   = {setSelect}    
+            />
+            <UndoRedo
+                bufferSize  = {10}
+                csv         = {csv}
+                setCsv      = {setCsv}
             />
             <Analytics/>
         </div>
