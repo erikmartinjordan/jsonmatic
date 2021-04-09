@@ -79,7 +79,6 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
         setCsv(temp);
         setMenu(false);
         
-        
     }
     
     const addCol = () => {
@@ -152,6 +151,14 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
                 
             }
             
+            if((e.ctrlKey && e.key === 'ArrowDown') || (e.metaKey && e.key === 'ArrowDown')){
+                
+                e.preventDefault();
+                
+                addCol();  
+                
+            }
+            
             if(e.key === 'Delete'){
                 
                 deleteValues();
@@ -201,7 +208,7 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
             
         }
         
-    }, [select]);
+    }, [csv, select]);
     
     return(
         <React.Fragment>
