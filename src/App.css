@@ -92,25 +92,16 @@
     background: transparent;
     width: 75px;
 }
-.App .Hint{
-    border-top: 1px solid #e1e4e8;
-    color: #586069;
-    font-size: 15px;
-    padding: 20px;
-}
 .App svg.octicon{
     margin-right: 5px;
 }
 .App .Footer{
     margin-top: auto;
 }
-.App kbd{
-    background: lightGray;
-    border: 1px solid lightGray;
-    border-radius: 5px;
-    font-family: monospace;
-    font-weight: bold;
-    padding: 2px 5px;
+.App .Hint{
+    color: gray;
+    font-size: small;
+    margin-left: auto;
 }
 .App button{
     align-items: center;
@@ -214,6 +205,7 @@ select::-ms-expand {
     border-radius: 10px;
     box-shadow: rgb(15 15 15/10%) 0px 0px 0px 1px,rgb(15 15 15/20%) 0px 5px 10px,rgb(15 15 15/40%) 0px 15px 40px;
     overflow: hidden;
+    min-width: 200px;
 }
 .Menu ul{
     padding: 0;

@@ -3,20 +3,6 @@ import React, { useEffect, useState } from 'react';
 const Table = ({csv, setCsv, select, setSelect}) => {
     
     const [drag, setDrag] = useState(false);
-    const [OS, setOS]     = useState(null);
-    
-    useEffect(() => {
-        
-        let macOS = ['iPhone', 'iPad', 'Mac', 'iPod'];
-        
-        let currentOS = navigator.platform;
-        
-        let isMac = macOS.some(device => currentOS.includes(device));
-        
-        if(isMac) 
-            setOS('Mac');
-        
-    }, []);
     
     useEffect(() => {
         
@@ -118,9 +104,6 @@ const Table = ({csv, setCsv, select, setSelect}) => {
                     )}
                 </tbody>
             </table>
-            <div className = 'Hint'>
-                Select a cell and press <kbd>{OS === 'Mac' ? 'cmd' : 'ctrl'}</kbd> + <kbd>v</kbd> to paste data from a spreadhseet into the table
-            </div>
         </div>
     );
     

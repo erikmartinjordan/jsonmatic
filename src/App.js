@@ -11,7 +11,7 @@ import './App.css';
 
 const App = () => {
     
-    const [csv, setCsv] = useUndoableState([
+    const [csv, setCsv, undo, redo] = useUndoableState([
         
         ['key', 'road', 'coord.lat',  'coord.lng', 'elem'],
         ['1',   'AP-7', 42.02,        2.82,        '🦄'],
@@ -77,7 +77,9 @@ const App = () => {
                 csv         = {csv}
                 setCsv      = {setCsv}
                 select      = {select}
-                setSelect   = {setSelect}    
+                setSelect   = {setSelect}   
+                undo        = {undo}
+                redo        = {redo}
             />
             <Analytics/>
         </div>

@@ -1,11 +1,24 @@
 import React, { useEffect, useState }           from 'react';
-import { CopyIcon, ClippyIcon, EllipsisIcon  }  from '@primer/octicons-react';
+import { CopyIcon, ClippyIcon, EllipsisIcon, ArrowLeftIcon, ArrowRightIcon  }  from '@primer/octicons-react';
 
-
-const Menu = ({select, setSelect, csv, setCsv}) => {
+const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
     
     const [menu, setMenu] = useState(false);
-    const [pos, setPos]   = useState([,])
+    const [pos, setPos]   = useState([,]);
+    const [OS, setOS]     = useState(null);
+    
+    useEffect(() => {
+        
+        let macOS = ['iPhone', 'iPad', 'Mac', 'iPod'];
+        
+        let currentOS = navigator.platform;
+        
+        let isMac = macOS.some(device => currentOS.includes(device));
+        
+        if(isMac) 
+            setOS('Mac');
+        
+    }, []);
     
     const merge = (arr1, arr2, x, y) => {
         
@@ -131,6 +144,14 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
                 
             }
             
+            if((e.ctrlKey && e.key === 'ArrowRight') || (e.metaKey && e.key === 'ArrowRight')){
+                
+                e.preventDefault();
+                
+                addRow();  
+                
+            }
+            
             if(e.key === 'Delete'){
                 
                 deleteValues();
@@ -187,11 +208,14 @@ const Menu = ({select, setSelect, csv, setCsv}) => {
             { menu
             ? <div className = 'Menu' style = {{position: 'absolute', top: pos.y, left: pos.x}}>
                 <ul>
-                    <li onClick = {copy}><CopyIcon/>Copy</li>
-                    <li onClick = {paste}><ClippyIcon/>Paste</li>
+                    <li onClick = {copy}><CopyIcon/>Copy <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+C</div></li>
+                    <li onClick = {paste}><ClippyIcon/>Paste <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+V</div></li>
                     <hr></hr>
-                    <li onClick = {addRow}><EllipsisIcon/>Add row</li>
-                    <li onClick = {addCol}><span style = {{transform: 'rotate(90deg)'}}><EllipsisIcon/></span>Add column</li>
+                    <li onClick = {undo}><ArrowLeftIcon/>Undo <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+Z</div></li>
+                    <li onClick = {redo}><ArrowRightIcon/>Redo <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+Shift+Z</div></li>
+                    <hr></hr>
+                    <li onClick = {addRow}><EllipsisIcon/>Add row <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+→</div></li>
+                    <li onClick = {addCol}><span style = {{transform: 'rotate(90deg)'}}><EllipsisIcon/></span>Add column<div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+↓</div></li>
                     <hr></hr>
                     <li onClick = {deleteRows}>Delete row(s)</li>
                     <li onClick = {deleteCols}>Delete column(s)</li>
