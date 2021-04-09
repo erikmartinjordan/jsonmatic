@@ -79,7 +79,7 @@ const Table = ({csv, setCsv, select, setSelect}) => {
     
     const editValue = (e, row, col) => {
         
-        const copyCsv = [...csv];
+        const copyCsv = JSON.parse(JSON.stringify(csv));
         
         copyCsv[row][col] = e.target.value;
         

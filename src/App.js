@@ -1,4 +1,5 @@
 import React, { useState }  from 'react';
+import useUndoableState     from './useUndoableState';
 import Subheader            from './Subheader';
 import Header               from './Header';
 import Result               from './Result';
@@ -6,12 +7,11 @@ import Table                from './Table';
 import TransformButton      from './TransformButton';
 import Menu                 from './Menu';
 import Analytics            from './Analytics';
-import UndoRedo             from './UndoRedo';
 import './App.css';
 
 const App = () => {
     
-    const [csv, setCsv] = useState([
+    const [csv, setCsv] = useUndoableState([
         
         ['key', 'road', 'coord.lat',  'coord.lng', 'elem'],
         ['1',   'AP-7', 42.02,        2.82,        '🦄'],
@@ -78,11 +78,6 @@ const App = () => {
                 setCsv      = {setCsv}
                 select      = {select}
                 setSelect   = {setSelect}    
-            />
-            <UndoRedo
-                bufferSize  = {10}
-                csv         = {csv}
-                setCsv      = {setCsv}
             />
             <Analytics/>
         </div>
