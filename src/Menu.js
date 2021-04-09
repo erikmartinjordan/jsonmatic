@@ -70,7 +70,7 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
     
     const addRow = () => {
         
-        let temp = [...csv];
+        let temp = JSON.parse(JSON.stringify(csv));
         
         let row = Array(temp[0].length).fill('');
         
@@ -83,7 +83,7 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
     
     const addCol = () => {
         
-        let temp = [...csv];
+        let temp = JSON.parse(JSON.stringify(csv));
         
         temp.forEach(row => row.splice(select[1] + 1, 0, ''));
         
@@ -94,7 +94,7 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
     
     const deleteRows = () => {
         
-        let temp = [...csv];
+        let temp = JSON.parse(JSON.stringify(csv));
         
         let [iniRow, iniCol, endRow, endCol] = select;
         
@@ -107,7 +107,7 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
     
     const deleteCols = () => {
         
-        let temp = [...csv];
+        let temp = JSON.parse(JSON.stringify(csv));
         
         let [iniRow, iniCol, endRow, endCol] = select;
         
@@ -120,7 +120,8 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
     
     const deleteValues = () => {
         
-        let temp = [...csv];
+        let temp = JSON.parse(JSON.stringify(csv));
+        
         let [iniRow, iniCol, endRow, endCol] = select;
         
         for(let i = iniRow; i <= endRow; i ++)
