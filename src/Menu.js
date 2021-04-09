@@ -132,6 +132,32 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
         
     }
     
+    const moveSelection = (direction) => {
+        
+        let temp = [...select];
+        
+        let cols = csv[0].length;
+        let rows = csv.length;
+        
+        if(temp.every(el => el === '')){
+            
+            setSelect([0, 0, 0, 0]);
+            return;
+        }
+            
+        switch(direction){
+            
+            case 'ArrowRight': temp[1] = temp[3] = Math.min(cols - 1, temp[1] + 1); break;
+            case 'ArrowLeft':  temp[1] = temp[3] = Math.max(0,        temp[1] - 1); break;   
+            case 'ArrowDown':  temp[0] = temp[2] = Math.min(rows - 1, temp[2] + 1); break; 
+            case 'ArrowUp':    temp[0] = temp[2] = Math.max(0,        temp[2] - 1); break; 
+            
+        }
+        
+        setSelect(temp);
+        
+    }
+    
     useEffect(() => {
         
         const onDown = async (e) => {
@@ -141,6 +167,14 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
                 e.preventDefault();
                 
                 paste();  
+                
+            }
+            
+            if(e.key === 'ArrowRight' || e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'ArrowDown'){
+                
+                e.preventDefault();
+                
+                moveSelection(e.key);  
                 
             }
             
