@@ -1,5 +1,5 @@
-import React, { useEffect, useState }           from 'react';
-import { CopyIcon, ClippyIcon, EllipsisIcon, ArrowLeftIcon, ArrowRightIcon  }  from '@primer/octicons-react';
+import React, { useEffect, useState }                                                     from 'react';
+import { CopyIcon, ClippyIcon, EllipsisIcon, ArrowLeftIcon, ArrowRightIcon, TrashIcon  }  from '@primer/octicons-react';
 
 const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
     
@@ -160,6 +160,22 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
                 
             }
             
+            if((e.ctrlKey && e.key === 'ArrowLeft') || (e.metaKey && e.key === 'ArrowLeft')){
+                
+                e.preventDefault();
+                
+                deleteRows();  
+                
+            }
+            
+            if((e.ctrlKey && e.key === 'ArrowUp') || (e.metaKey && e.key === 'ArrowUp')){
+                
+                e.preventDefault();
+                
+                deleteCols();  
+                
+            }
+            
             if(e.key === 'Delete'){
                 
                 deleteValues();
@@ -225,8 +241,8 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
                     <li onClick = {addRow}><EllipsisIcon/>Add row <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+→</div></li>
                     <li onClick = {addCol}><span style = {{transform: 'rotate(90deg)'}}><EllipsisIcon/></span>Add column<div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+↓</div></li>
                     <hr></hr>
-                    <li onClick = {deleteRows}>Delete row(s)</li>
-                    <li onClick = {deleteCols}>Delete column(s)</li>
+                    <li onClick = {deleteRows}><span style = {{color: 'rgb(235, 87, 87)'}}>Delete row(s)</span><div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+←</div></li>
+                    <li onClick = {deleteCols}><span style = {{color: 'rgb(235, 87, 87)'}}>Delete column(s)</span><div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+↑</div></li>
                 </ul>  
               </div>
             : null
