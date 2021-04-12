@@ -33,9 +33,14 @@ const Table = ({csv, setCsv, select, setSelect}) => {
             
             setSelect([row, col, row, col]);
             
+            setDrag(true);
+            
         }
-        
-        setDrag(true);
+        if(e.button === 2 && iniRow === endRow && iniCol === endCol){
+            
+            setSelect([row, col, row, col]);
+            
+        }
         
     }
     
