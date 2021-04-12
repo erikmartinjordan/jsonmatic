@@ -158,6 +158,15 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
         
     }
     
+    const selectAll = () => {
+        
+        let cols = csv[0].length;
+        let rows = csv.length;
+        
+        setSelect([0, 0, rows - 1, cols - 1]);
+        
+    }
+    
     useEffect(() => {
         
         const onDown = async (e) => {
@@ -167,6 +176,14 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
                 e.preventDefault();
                 
                 paste();  
+                
+            }
+            
+            if((e.ctrlKey && e.key === 'a') || (e.metaKey && e.key === 'a')){
+                
+                e.preventDefault();
+                
+                selectAll();  
                 
             }
             
