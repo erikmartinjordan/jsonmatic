@@ -35,7 +35,7 @@ test('Paste CSV displays table correctly', async () => {
     
     fireEvent.click(screen.getByDisplayValue('key'));
     
-    await waitFor(() => expect(document.getElementById(0)).toHaveClass('Selected'));
+    await waitFor(() => expect(document.getElementById('00')).toHaveClass('Selected'));
     
     document.dispatchEvent(
         new KeyboardEvent("keydown", {
@@ -72,7 +72,7 @@ test('Duplicate key displays an error', async () => {
     
     fireEvent.click(screen.getByDisplayValue('key'));
     
-    await waitFor(() => expect(document.getElementById(0)).toHaveClass('Selected'));
+    await waitFor(() => expect(document.getElementById('00')).toHaveClass('Selected'));
     
     document.dispatchEvent(
         new KeyboardEvent("keydown", {
@@ -151,7 +151,7 @@ test('Transforms a CSV into a JSON correctly', async () => {
     
     fireEvent.click(screen.getByDisplayValue('key'));
     
-    await waitFor(() => expect(document.getElementById(0)).toHaveClass('Selected'));
+    await waitFor(() => expect(document.getElementById('00')).toHaveClass('Selected'));
     
     document.dispatchEvent(
         new KeyboardEvent("keydown", {
@@ -235,7 +235,7 @@ test('Copies JSON into the clipboard', async () => {
     
     fireEvent.click(screen.getByDisplayValue('key'));
     
-    await waitFor(() => expect(document.getElementById(0)).toHaveClass('Selected'));
+    await waitFor(() => expect(document.getElementById('00')).toHaveClass('Selected'));
     
     document.dispatchEvent(
         new KeyboardEvent("keydown", {
