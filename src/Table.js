@@ -17,7 +17,7 @@ const Table = ({csv, setCsv, select, setSelect}) => {
         
         return () => window.removeEventListener('click', onClick);
       
-    }, [select]);
+    }, [select, setSelect]);
     
     const selectBox = (row, col) => {
         
@@ -97,7 +97,6 @@ const Table = ({csv, setCsv, select, setSelect}) => {
                     {csv.map((row, i) => 
                         <tr key = {i}>{csv[i].map((column, j) => 
                             <td key           = {j}
-                                id            = {i, j}
                                 onClick       = {(e) => selectBox(i, j)}
                                 onMouseDown   = {(e) => handleMouseDown(e, i, j)}
                                 onMouseUp     = {(e) => handleMouseUp(e, i, j)}

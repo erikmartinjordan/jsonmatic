@@ -24,6 +24,7 @@
     font-size: 30px;
     font-weight: 800;
     margin-bottom: 15px;
+    text-align: center;
 }
 .App p,
 .App b,
@@ -173,7 +174,6 @@
     justify-content: space-between;
     margin: 10px;
     position: relative;
-    width: 150px;
 }
 .Selector svg{
     position: absolute;
@@ -185,7 +185,7 @@ select {
     font-size: 14px;
     font-weight: bold;
     padding: 10px;
-    width: 100%;
+    width: 150px;
     z-index: 2;
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -193,7 +193,6 @@ select {
 select::-ms-expand {
     display: none;
 }
-
 /*
  * 
  * Menu
@@ -225,4 +224,31 @@ select::-ms-expand {
     border-top: 1px solid #e1e4e8;
     margin-bottom: 5px;
     margin-top: 5px;
+}
+/*
+ * 
+ * Mobile devices
+ * 
+ * 
+ */
+@media(max-width: 768px){
+    .App .Subheader{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .App .Result,
+    .App .Result textarea,
+    .App .Table{
+        width: 100%;
+    }
+    .App .Options{
+        overflow-x: auto;
+        width: 100%;
+    }
+    .Content{
+        flex-direction: column;
+        max-width: 100%;
+    }
+    
 }

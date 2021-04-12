@@ -68,9 +68,10 @@ const useUndoableState = (csv) => {
         
         window.addEventListener('keydown', onDown);
         
-        return () => window.removeEventListener('keydown', onDown);        
+        return () => window.removeEventListener('keydown', onDown);
         
-    }, [buffer, index]);
+        
+    }, [buffer, index]); // eslint-disable-line react-hooks/exhaustive-deps
     
     return [buffer[index], setCsv, undo, redo];
     

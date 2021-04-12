@@ -1,10 +1,10 @@
-import React, { useEffect, useState }                                                     from 'react';
-import { CopyIcon, ClippyIcon, EllipsisIcon, ArrowLeftIcon, ArrowRightIcon, TrashIcon  }  from '@primer/octicons-react';
+import React, { useEffect, useState }                                          from 'react';
+import { CopyIcon, ClippyIcon, EllipsisIcon, ArrowLeftIcon, ArrowRightIcon  }  from '@primer/octicons-react';
 
 const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
     
     const [menu, setMenu] = useState(false);
-    const [pos, setPos]   = useState([,]);
+    const [pos, setPos]   = useState({x: 0, y: 0});
     const [OS, setOS]     = useState(null);
     
     useEffect(() => {
@@ -96,7 +96,7 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
         
         let temp = JSON.parse(JSON.stringify(csv));
         
-        let [iniRow, iniCol, endRow, endCol] = select;
+        let [iniRow, iniCol, endRow, endCol] = select; // eslint-disable-line no-unused-vars
         
         temp.splice(iniRow, endRow - iniRow + 1);
         
@@ -109,7 +109,7 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
         
         let temp = JSON.parse(JSON.stringify(csv));
         
-        let [iniRow, iniCol, endRow, endCol] = select;
+        let [iniRow, iniCol, endRow, endCol] = select; // eslint-disable-line no-unused-vars
         
         temp.forEach(row => row.splice(iniCol, endCol - iniCol + 1));
         
@@ -153,6 +153,7 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
             case 'ArrowLeft':  temp[1] = temp[3] = Math.max(0,        temp[1] - 1); break;   
             case 'ArrowDown':  temp[0] = temp[2] = Math.min(rows - 1, temp[2] + 1); break; 
             case 'ArrowUp':    temp[0] = temp[2] = Math.max(0,        temp[2] - 1); break; 
+            default: break;
             
         }
         
@@ -257,7 +258,7 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
                 
                 e.preventDefault();
                 
-                setPos({x: e.screenX, y: e.screenY});
+                setPos({x: e.pageX, y: e.pageY});
                 setMenu(true);
                 
                 window.addEventListener('click', onLeftClick);
@@ -278,7 +279,7 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
             
         }
         
-    }, [csv, select]);
+    }, [csv, select]); // eslint-disable-line react-hooks/exhaustive-deps
     
     return(
         <React.Fragment>

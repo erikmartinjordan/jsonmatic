@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import FingerprintJS                  from '@fingerprintjs/fingerprintjs';
-import moment                         from 'moment';    
-import firebase                       from './Firebase';
+import { useEffect } from 'react';
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import moment        from 'moment';    
+import firebase      from './Firebase';
 
 const Analytics = () => {
     
