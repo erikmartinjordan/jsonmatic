@@ -136,15 +136,17 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
         
         let temp = [...select];
         
+        let [iniRow, iniCol, endRow, endCol] = temp;
+        
         let cols = csv[0].length;
         let rows = csv.length;
         
-        if(temp.every(el => el === '')){
+        if(temp.every(el => el === '') || iniRow !== endRow || iniCol !== endCol){
             
             setSelect([0, 0, 0, 0]);
             return;
         }
-            
+        
         switch(direction){
             
             case 'ArrowRight': temp[1] = temp[3] = Math.min(cols - 1, temp[1] + 1); break;
@@ -255,7 +257,7 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
                 
                 e.preventDefault();
                 
-                setPos({x: e.clientX, y: e.clientY + 100});
+                setPos({x: e.screenX, y: e.screenY});
                 setMenu(true);
                 
                 window.addEventListener('click', onLeftClick);
