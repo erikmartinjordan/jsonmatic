@@ -51,10 +51,26 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
     
     const copy = () => {
         
-        let row = select[0];
-        let col = select[1];
+        let text = '';
         
-        navigator.clipboard.writeText(csv[row][col]);
+        let [iniRow, iniCol, endRow, endCol] = select;
+        
+        for(let i = iniRow; i <= endRow; i ++){
+            for(let j = iniCol; j <= endCol; j ++){
+                
+                text += csv[i][j];
+                
+                if(j !== endCol) 
+                    text += '\t';
+                
+            }
+            
+            if(i !== endRow) 
+                text += '\n';
+            
+        }
+        
+        navigator.clipboard.writeText(text);
         
     }
     
@@ -195,6 +211,14 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
                 e.preventDefault();
                 
                 moveSelection(e.key);  
+                
+            }
+            
+            if((e.ctrlKey && e.key === 'c') || (e.metaKey && e.key === 'c')){
+                
+                e.preventDefault();
+                
+                copy();  
                 
             }
             
