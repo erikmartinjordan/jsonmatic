@@ -90,7 +90,7 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
         
         let row = Array(temp[0].length).fill('');
         
-        temp.splice(select[0], 0, row);
+        temp.splice(select[0] + 1, 0, row);
         
         setCsv(temp);
         setMenu(false);
