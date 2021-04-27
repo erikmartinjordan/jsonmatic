@@ -8,7 +8,9 @@ const Table = ({csv, setCsv, select, setSelect}) => {
         
         const onClick = async (e) => {
             
-            if(!document.getElementById('Table').contains(e.target))
+            let ref = document.getElementById('Table');
+            
+            if(ref && !ref.contains(e.target))
                 setSelect(['', '', '', '']);
             
         }
