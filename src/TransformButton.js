@@ -15,51 +15,60 @@ const TransformButton = ({csv, json, setJson}) => {
         
     }
     
-    const transformToJSON = async () => {
+    const generateJSON = (csv) => {
         
         let json = {};
-        
-        setJson({'Generating JSON': 'Wait a few seconds...'});
         
         csv.forEach((row, i) => {
             csv[i].forEach((column, j) => {
                 
-                if(i > 0 && j === 0){
-                    
-                    let key = csv[i][j];
-                    
-                    json[key] = {};
-                    
-                }
+                let key        = csv[i][0];
+                let value      = csv[i][j];
+                let properties = csv[0][j];
                 
-                if(i > 0 && j > 0){
+                if(i > 0 && j > 0 && key && value){
                     
-                    let properties = csv[0][j];
-                    let value = csv[i][j];
+                    json[key] = json[key] || {};
                     
-                    let lastKey = Object.keys(json).pop();
-                    let ref = json[lastKey];
+                    let ref = json[key];
+                    let subproperties = properties.split('.');
+                    let last = subproperties.pop();
                     
-                    let arrayProperties = properties.split('.');
-                    
-                    let last = arrayProperties.pop();
-                    
-                    arrayProperties.forEach(property => {
+                    subproperties.forEach(property => {
                         
                         ref[property] = ref[property] || {};
                         ref = ref[property];
                         
                     });
                     
-                    let stringOrNumber = isNaN(value) ? value : parseFloat(value);
-                    
-                    ref[last] = stringOrNumber || '';
+                    ref[last] = isNaN(value) ? value : parseFloat(value);
                     
                 }
+                
             })
         });
         
-        let duplicateKeys = Object.keys(json).length !== csv.length - 1;
+        return json;
+        
+    }
+    
+    const transformToJSON = async () => {
+        
+        let empty = {};
+        
+        setJson({'Generating JSON': 'Wait a few seconds...'});
+        
+        let firstCol = csv.map(e => e[0]);
+        let firstRow = csv[0];
+        
+        let duplicateKeys = firstCol.some(e => empty[e] ? true : (empty[e] = true, false));
+        let firstRowEmpty = firstRow.every(e => e === '');
+        
+        if(!duplicateKeys && !firstRowEmpty){
+            
+            var res = generateJSON(csv);
+            
+        }
         
         await new Promise(resolve => setTimeout(resolve, 1000));
         
@@ -68,10 +77,15 @@ const TransformButton = ({csv, json, setJson}) => {
             setJson({'Error': 'JSON has duplicate keys'});
             
         }
+        else if(firstRowEmpty){
+            
+            setJson({'Error': `First row shouldn't be empty`});
+            
+        }
         else{
             
-            setJson(json);
-            addToDB(json);
+            setJson(res);
+            addToDB(res);
             
         }
         
