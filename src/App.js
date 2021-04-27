@@ -7,7 +7,6 @@ import Table                from './Table';
 import TransformButton      from './TransformButton';
 import Menu                 from './Menu';
 import Analytics            from './Analytics';
-import './App.css';
 
 const App = () => {
     
