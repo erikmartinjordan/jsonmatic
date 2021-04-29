@@ -1,5 +1,6 @@
 import App               from './App';
 import Changelog         from './Changelog';
+import MultipleReplaces  from './MultipleReplaces';
 import Footer            from './Footer';
 import React             from 'react';
 import ReactDOM          from 'react-dom';
@@ -12,6 +13,7 @@ ReactDOM.render(
         <Switch>
             <Route exact path = '/'             component = {App}/>
             <Route exact path = '/changelog'    component = {Changelog}/>
+            <Route exact path = '/replace'      component = {MultipleReplaces}/>
         </Switch>
         <Footer/>
     </BrowserRouter>

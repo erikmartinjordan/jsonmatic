@@ -1,3 +1,8 @@
+## 29.04.21 - Multiple replace
+
+* Added a component to replace a property in multiple JSON files
+* Replace/download
+
 ## 27.04.21 — Changelog
 
 * Added changelog
