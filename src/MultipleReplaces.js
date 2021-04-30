@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { saveAs }          from 'file-saver';
-import { DownloadIcon }    from '@primer/octicons-react';
+import React, { useState }             from 'react';
+import { saveAs }                      from 'file-saver';
+import { DownloadIcon, UploadIcon }    from '@primer/octicons-react';
 
 
 const MultipleReplaces = () => {
     
     const [jsonfiles,    setJsonfiles]    = useState([]);
+    const [numReplaces,  setNumReplaces]  = useState(0);
     const [path,         setPath]         = useState('');
     const [replaceValue, setReplaceValue] = useState('');
     const [currentValue, setCurrentValue] = useState('');
@@ -38,6 +39,8 @@ const MultipleReplaces = () => {
     }
     
     const replace = () => {
+
+        let numReplaces = 0;
         
         let jsonFilesReplaced = jsonfiles.map(({name, json}) => {
             
@@ -54,7 +57,10 @@ const MultipleReplaces = () => {
             let _replaceValue = isNaN(replaceValue) ? replaceValue : parseFloat(replaceValue);
             
             if(_currentValue === val){
+
                 ref[last] = _replaceValue;
+                numReplaces ++;
+
             }
         
             return {
@@ -65,6 +71,7 @@ const MultipleReplaces = () => {
         });
 
         setJsonfiles(jsonFilesReplaced);
+        setNumReplaces(numReplaces);
         
     }
     
@@ -90,9 +97,9 @@ const MultipleReplaces = () => {
             { jsonfiles.length === 0
             ? <React.Fragment>
                 <h2>Replace multiple properties in JSON files at once</h2>
-                <p>Select your files (they won't be uploaded to any server), they stay in your browser.</p>
+                <p>Select your files (they won't be uploaded to any server), they remain in your browser.</p>
                 <div className = 'Upload'>
-                    <p>Click here to upload files</p>
+                    <UploadIcon/>Click here to upload files
                     <input onChange = {upload} type = 'file' title = '' multiple/>
                 </div> 
               </React.Fragment>
@@ -115,7 +122,7 @@ const MultipleReplaces = () => {
                     <input placeholder = 'new value' onChange = {e => setReplaceValue(e.target.value)} value = {replaceValue}/>
                 </div>
                 <div className = 'Actions'>
-                    <button onClick = {replace}>Replace</button>
+                    <button onClick = {replace}>{numReplaces ? `Replaced ${numReplaces} fields` : `Replace`}</button>
                     <button onClick = {download}><DownloadIcon/>Download all files</button>                                        
                 </div>
               </React.Fragment>
