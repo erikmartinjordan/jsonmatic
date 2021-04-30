@@ -5,8 +5,9 @@ import { DownloadIcon, UploadIcon }    from '@primer/octicons-react';
 
 const MultipleReplaces = () => {
     
+    const [alert,        setAlert]        = useState('');
     const [jsonfiles,    setJsonfiles]    = useState([]);
-    const [numReplaces,  setNumReplaces]  = useState(0);
+    const [numReplaces,  setNumReplaces]  = useState(null);
     const [path,         setPath]         = useState('');
     const [replaceValue, setReplaceValue] = useState('');
     const [currentValue, setCurrentValue] = useState('');
@@ -70,6 +71,7 @@ const MultipleReplaces = () => {
             
         });
 
+
         setJsonfiles(jsonFilesReplaced);
         setNumReplaces(numReplaces);
         
@@ -122,8 +124,11 @@ const MultipleReplaces = () => {
                     <input placeholder = 'new value' onChange = {e => setReplaceValue(e.target.value)} value = {replaceValue}/>
                 </div>
                 <div className = 'Actions'>
-                    <button onClick = {replace}>{numReplaces ? `Replaced ${numReplaces} fields` : `Replace`}</button>
-                    <button onClick = {download}><DownloadIcon/>Download all files</button>                                        
+                    <button onClick = {replace}  disabled = {!path || !currentValue || !replaceValue}>Replace</button>
+                    <button onClick = {download} disabled = {false}><DownloadIcon/>Download all files</button>  
+                </div>
+                <div className = 'Alerts'>
+                    <div>{numReplaces >= 0 ? `${numReplaces} fields replaced` : null}</div>                                      
                 </div>
               </React.Fragment>
             }

@@ -42,6 +42,10 @@ button:hover{
     background: #0065cc;
     transition: 0.2s ease-in-out;
 }
+button:disabled{
+    cursor: not-allowed;
+    opacity: 0.5;
+}
 button:hover svg{
     animation: tilt 0.5s ease-in-out;
 }
@@ -370,6 +374,9 @@ select::-ms-expand {
     border: 1px solid #e1e4e8;
     color: black;
     margin-right: 5px;
+}
+.Multiple .Alerts{
+    font-size: 14px;
 }
 /*
  * 
