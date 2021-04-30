@@ -42,8 +42,15 @@ button:hover{
     background: #0065cc;
     transition: 0.2s ease-in-out;
 }
-button svg.octicon{
-    margin-right: 5px;
+button:hover svg{
+    animation: tilt 0.5s ease-in-out;
+}
+svg.octicon{
+    margin-right: 10px;
+}
+@keyframes tilt{
+    50%  {transform: rotate(20deg);}
+    100% {transform: rotate(0deg);}
 }
 /*
  * 
@@ -315,12 +322,19 @@ select::-ms-expand {
     width: 200px;
 }
 .Multiple .Upload{
+    align-items: center;
     border: 3px dashed #e1e4e8;
     border-radius: 12px;
+    display: flex;
     font-weight: 500;
+    justify-content: center;
+    max-width: 500px;
     padding: 20px;
     position: relative;
     text-align: center;
+}
+.Multiple .Upload:hover svg{
+    animation: tilt 0.5s ease-in-out;
 }
 .Multiple input[type='file']{
     cursor: pointer;
