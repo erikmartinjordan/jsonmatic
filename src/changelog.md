@@ -1,4 +1,11 @@
-## 29.04.21 - Multiple replace
+## 30.04.21 — Greater and lesser replace
+
+* Replace fields if a property is greater/lesser than a certain value
+* Added tilt effect on hover buttons 💅
+* Added file name as title into JSON box 
+* Showing number of replaces
+
+## 29.04.21 — Multiple replace
 
 * Added a component to replace a property in multiple JSON files
 * Replace/download
