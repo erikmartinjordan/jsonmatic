@@ -1,13 +1,13 @@
-import React, { useState }             from 'react';
-import { saveAs }                      from 'file-saver';
-import { DownloadIcon, UploadIcon }    from '@primer/octicons-react';
+import React, { useState }                               from 'react';
+import { saveAs }                                        from 'file-saver';
+import { DownloadIcon, UploadIcon, TriangleDownIcon }    from '@primer/octicons-react';
 
 
 const MultipleReplaces = () => {
     
-    const [alert,        setAlert]        = useState('');
     const [jsonfiles,    setJsonfiles]    = useState([]);
     const [numReplaces,  setNumReplaces]  = useState(null);
+    const [operation,    setOperation]    = useState('equal');
     const [path,         setPath]         = useState('');
     const [replaceValue, setReplaceValue] = useState('');
     const [currentValue, setCurrentValue] = useState('');
@@ -56,8 +56,16 @@ const MultipleReplaces = () => {
 
             let _currentValue = isNaN(currentValue) ? currentValue : parseFloat(currentValue);
             let _replaceValue = isNaN(replaceValue) ? replaceValue : parseFloat(replaceValue);
+
+            let rule = {
+
+                'equal':   () => val === _currentValue,
+                'greater': () => val  >  _currentValue,
+                'lesser':  () => val  <  _currentValue
+
+            }[operation]();
             
-            if(_currentValue === val){
+            if(rule){
 
                 ref[last] = _replaceValue;
                 numReplaces ++;
@@ -110,6 +118,7 @@ const MultipleReplaces = () => {
                 <div className = 'Grid'>
                     {jsonfiles.map(({name, json}, key) => 
                         <div className = 'Block' key = {key}>
+                            <div className = 'Name'>{name}</div>
                             {JSON.stringify(json, null, 2)}
                         </div>)
                     }
@@ -118,7 +127,14 @@ const MultipleReplaces = () => {
                 <div className = 'Replace'>
                     <span>If</span>
                     <input placeholder = 'property.subproperty' onChange = {e => setPath(e.target.value)} value = {path}/>
-                    <span>is equal to</span>
+                    <div className = 'Selector'>
+                        <select value = {operation} onChange = {(e) => setOperation(e.target.value)}>
+                            <option value = 'equal'>is equal to</option>
+                            <option value = 'greater'>is greater than</option>
+                            <option value = 'greater'>is lesser than</option>
+                        </select>
+                        <TriangleDownIcon/>
+                    </div>
                     <input placeholder = 'value' onChange = {e => setCurrentValue(e.target.value)} value = {currentValue}/>
                     <span>replace with</span>
                     <input placeholder = 'new value' onChange = {e => setReplaceValue(e.target.value)} value = {replaceValue}/>
@@ -128,7 +144,7 @@ const MultipleReplaces = () => {
                     <button onClick = {download} disabled = {false}><DownloadIcon/>Download all files</button>  
                 </div>
                 <div className = 'Alerts'>
-                    <div>{numReplaces >= 0 ? `${numReplaces} fields replaced` : null}</div>                                      
+                    <div>{numReplaces !== null ? `${numReplaces} fields replaced` : null}</div>                                      
                 </div>
               </React.Fragment>
             }
