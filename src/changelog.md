@@ -1,11 +1,17 @@
-## 30.04.21 — Greater and lesser replace
+## 02.05.21 — Multiple JSON deletion
+
+* Delete several properties of multiple JSON files separating them with commas: `prop1.subprop1`, `prop2.subprop2`, etc.
+* Delete a single property using rules (*equal to*, *greater than*, and *lesser than*)
+* Displaying number of deletions
+
+## 30.04.21 — Rules
 
 * Replace fields if a property is greater/lesser than a certain value
 * Added tilt effect on hover buttons 💅
 * Added file name as title into JSON box 
-* Showing number of replaces
+* Displaying number of replaces
 
-## 29.04.21 — Multiple replace
+## 29.04.21 — Multiple JSON replacement
 
 * Added a component to replace a property in multiple JSON files
 * Replace/download
