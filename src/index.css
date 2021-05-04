@@ -394,6 +394,24 @@ select::-ms-expand {
 .Multiple .Alerts{
     font-size: 14px;
 }
+.Multiple .DragAndDrop{
+    align-items: center;
+    display: flex;
+}
+.Multiple .DragAndDrop .Element{
+    align-items: center;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 5px;
+    padding: 10px;
+    width: max-content;
+}
+.Multiple .DragAndDrop svg.octicon-grabber{
+    cursor: grab;
+    margin: 0;
+}
 /*
  * 
  * Mobile devices
