@@ -282,8 +282,16 @@ select::-ms-expand {
  */
 .Changelog{
     margin: auto;
-    max-width: 1200px;
+    margin-bottom: 50px;
+    max-width: 650px;
     width: 100%;
+}
+.Changelog h2{
+    margin-top: 50px;
+}
+.Changelog img{
+    border-radius: 12px;
+    max-width: 100%;
 }
 /*
  * 

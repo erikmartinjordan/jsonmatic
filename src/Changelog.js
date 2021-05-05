@@ -23,6 +23,7 @@ const Changelog = () => {
     
     return(
         <div className = 'Changelog'>
+            <h1>What's new?</h1>
             <ReactMarkdown children = {markdown}/>
         </div>
     );
