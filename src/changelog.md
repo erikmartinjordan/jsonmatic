@@ -1,3 +1,9 @@
+## 05.05.21 — Multiple JSON merge
+
+* Merge multiple JSON files
+* Select merge order (priority)
+* Download merged file
+
 ## 02.05.21 — Multiple JSON deletion
 
 * Delete several properties of multiple JSON files separating them with commas: `prop1.subprop1`, `prop2.subprop2`, etc.

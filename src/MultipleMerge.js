@@ -1,7 +1,7 @@
-import React, { useState }                                           from 'react';
-import { saveAs }                                                    from 'file-saver';
-import UploadFiles                                                   from './UploadFiles';
-import { DownloadIcon, TriangleDownIcon, GrabberIcon, GitMergeIcon } from '@primer/octicons-react';
+import React, { useState }                         from 'react';
+import { saveAs }                                  from 'file-saver';
+import UploadFiles                                 from './UploadFiles';
+import { DownloadIcon, GrabberIcon, GitMergeIcon } from '@primer/octicons-react';
 
 const MultipleReplaces = () => {
     
@@ -39,18 +39,14 @@ const MultipleReplaces = () => {
 
     const download = () => {
 
-        jsonfiles.forEach(({name, json}) => {
+        let fileName = `merged.json`;
     
-            let fileName = name;
-    
-            let fileToSave = new Blob([JSON.stringify(json, null, 2)], {
-                type: 'application/json',
-                name: fileName
-            });
+        let fileToSave = new Blob([JSON.stringify(merged, null, 2)], {
+            type: 'application/json',
+            name: fileName
+        });
             
-            saveAs(fileToSave, fileName);
-    
-        });       
+        saveAs(fileToSave, fileName);       
     
     }
 
@@ -62,19 +58,24 @@ const MultipleReplaces = () => {
 
     const handleDragOver = (e) => {
 
-        let copy = [...jsonfiles];
-
         let newPosition = parseInt(e.target.id);
-
+    
         if(newPosition >= 0){
-
-            [copy[newPosition], copy[dragged]] = [copy[dragged], copy[newPosition]];
-
+    
+            let copy = [...jsonfiles];
+    
+            let moveElem = ((from, to, elem) => {
+    
+                copy.splice(from, 1);
+                copy.splice(to, 0, elem);
+    
+            })(dragged, newPosition, jsonfiles[dragged]);
+    
             setJsonfiles(copy);
             setDragged(newPosition);
-
+    
         }
-
+    
     }
 
     const handleDragEnd = () => {
@@ -103,13 +104,16 @@ const MultipleReplaces = () => {
                     )}
                     <button onClick = {merge} disabled = {false}><GitMergeIcon/>Merge all files</button>
                 </div>
-                <div className = 'Result'>
+                { merged
+                ? <div className = 'Result'>
                     <div className = 'Block'>
                         <div className = 'Name'>merged.json</div>
                         {JSON.stringify(merged, null, 2)}
                     </div>
-                    <button onClick = {download}>Download</button>
+                    <button onClick = {download}><DownloadIcon/>Download</button>
                 </div>
+                : null
+                }
               </React.Fragment>
             : null
             }
