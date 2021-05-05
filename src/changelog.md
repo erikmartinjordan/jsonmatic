@@ -1,6 +1,6 @@
 ## 05.05.21 — Multiple JSON merge
 
-![Merge JSON files](https://github.com/erikmartinjordan/Screenshots/blob/master/May-05-2021%2011-49-07.gif?raw=true)
+![Merge JSON files](https://github.com/erikmartinjordan/Screenshots/blob/master/May-05-2021%2012-47-05.gif?raw=true)
 
 * Merge multiple JSON files
 * Select merge order (priority)
@@ -21,7 +21,7 @@
 
 ## 29.04.21 — Multiple JSON replacement
 
-![Multiple JSON replacement](https://github.com/erikmartinjordan/Screenshots/blob/master/May-05-2021%2011-46-31.gif?raw=true)
+![Multiple JSON replacement](https://github.com/erikmartinjordan/Screenshots/blob/master/May-05-2021%2012-46-00.gif?raw=true)
 
 * Added a component to replace a property in multiple JSON files
 * Replace/download
