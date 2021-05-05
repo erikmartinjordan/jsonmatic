@@ -1,6 +1,5 @@
 import React, { useState }  from 'react';
 import useUndoableState     from './useUndoableState';
-import Subheader            from './Subheader';
 import Header               from './Header';
 import Result               from './Result';
 import Table                from './Table';
@@ -54,7 +53,6 @@ const App = () => {
     
     return (
         <div className = 'App'>
-            <Subheader/>
             <Header/>
             <div className = 'Content'>
                 <Table 
