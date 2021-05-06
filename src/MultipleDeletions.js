@@ -19,7 +19,7 @@ const MultipleReplaces = () => {
 
             let clone = {...json};
             
-            let res = path.split(',').map(path => {
+            path.split(',').forEach(path => {
 
                 let props = path.trim().split('.');
             
