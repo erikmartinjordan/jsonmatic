@@ -64,7 +64,7 @@ const MultipleReplaces = () => {
     
             let copy = [...jsonfiles];
     
-            let moveElem = ((from, to, elem) => {
+            ((from, to, elem) => {
     
                 copy.splice(from, 1);
                 copy.splice(to, 0, elem);
