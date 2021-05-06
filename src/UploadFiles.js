@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { UploadIcon }      from '@primer/octicons-react';
+import React                           from 'react';
+import { UploadIcon, PlusCircleIcon }  from '@primer/octicons-react';
 
 const UploadFiles = ({jsonfiles, setJsonfiles}) => {
     
@@ -24,9 +24,9 @@ const UploadFiles = ({jsonfiles, setJsonfiles}) => {
             
         });       
 
-        let jsons = await Promise.all(files);
+        let uploaded = await Promise.all(files);
         
-        setJsonfiles(jsons);
+        setJsonfiles([...jsonfiles, ...uploaded]);
         
     }
     
@@ -48,6 +48,10 @@ const UploadFiles = ({jsonfiles, setJsonfiles}) => {
                             {JSON.stringify(json, null, 2)}
                         </div>)
                     }
+                    <div className = 'Upload'>
+                        <PlusCircleIcon/>Add more files
+                        <input onChange = {upload} type = 'file' title = '' multiple/>
+                    </div> 
                 </div>
               </React.Fragment>
             }
