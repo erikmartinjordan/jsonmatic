@@ -74,6 +74,14 @@ select::-ms-expand {
     50%  {transform: rotate(20deg);}
     100% {transform: rotate(0deg);}
 }
+@keyframes swirl_in{
+    0%    {transform: rotate(0deg);}
+    100%  {transform: rotate(180deg);}
+}
+@keyframes swirl_out{
+    0%    {transform: rotate(180deg);}
+    100%  {transform: rotate(0);}
+}
 /*
  * 
  * App
@@ -330,7 +338,7 @@ select::-ms-expand {
     display: flex;
     flex-wrap: wrap;
 }
-.Multiple .Block{
+.Multiple .Grid .Block{
     border: 1px solid #e1e4e8;
     border-radius: 6px;
     height: 200px;
@@ -341,7 +349,7 @@ select::-ms-expand {
     white-space: break-spaces;
     width: 200px;
 }
-.Multiple .Block .Name{
+.Multiple .Grid .Block .Name{
     background: #e1e4e8;
     font-size: 10px;
     right: 0;
@@ -361,8 +369,19 @@ select::-ms-expand {
     position: relative;
     text-align: center;
 }
+.Multiple .Grid .Upload{
+    height: 200px;
+    margin: 10px;
+    width: 200px;
+}
 .Multiple .Upload:hover svg{
     animation: tilt 0.5s ease-in-out;
+}
+.Multiple .Grid .Upload svg{
+    animation: 0.3s swirl_out ease-in-out;
+}
+.Multiple .Grid .Upload:hover svg{
+    animation: 0.3s swirl_in ease-in-out;
 }
 .Multiple input[type='file']{
     cursor: pointer;
