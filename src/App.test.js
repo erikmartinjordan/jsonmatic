@@ -1,6 +1,9 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { configure }                          from '@testing-library/dom';
 import App                                    from './App';
 import firebase, { environment }              from './Firebase';
+
+configure({ asyncUtilTimeout: 5000 });
 
 beforeEach(() => {
     
