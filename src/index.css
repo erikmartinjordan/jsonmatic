@@ -201,18 +201,28 @@ select::-ms-expand {
     display: flex;
     flex-direction: column;
 }
-.App .Result textarea{
+.App .Result .TextareaIndent{
     border: 1px solid #e1e4e8;
     border-radius: 12px;
     height: 590px;
     outline: none;
     padding: 20px;
+    position: relative;
     width: 590px;
 }
-.App .Alert{
-    position: fixed;
-    right: 20px;
-    top: 20px;
+.App .Result .TextareaIndent textarea{
+    border: none;
+    height: 100%;
+    outline: none;
+    resize: none;
+    width: 100%;
+}
+.App .Result .TextareaIndent .Alert{
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 .App .Options{
     align-self: flex-end;

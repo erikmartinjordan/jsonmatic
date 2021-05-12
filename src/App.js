@@ -27,7 +27,7 @@ const App = () => {
                     "lat": 42.02,
                     "lng": 2.82
                 },
-                "elem": "🦄'"
+                "elem": "🦄"
             },
             "2": {
                 "road": "C-32",
@@ -68,6 +68,7 @@ const App = () => {
                 />
                 <Result 
                     json    = {json}
+                    setJson = {setJson}
                 />
             </div>
             <Menu

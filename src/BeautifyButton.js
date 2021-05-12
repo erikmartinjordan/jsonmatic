@@ -1,7 +1,7 @@
 import React          from 'react';
 import { SmileyIcon } from '@primer/octicons-react';
 
-const BeautifyButton = ({indent, setIndent}) => {
+const BeautifyButton = ({edit, indent, setIndent}) => {
     
     const beautify = () => {
         
@@ -11,7 +11,7 @@ const BeautifyButton = ({indent, setIndent}) => {
     }
     
     return(
-        <button className = 'Beauty' onClick = {beautify}><SmileyIcon/>Beautify</button>
+        <button disabled = {edit} className = 'Beauty' onClick = {beautify}><SmileyIcon/>Beautify</button>
     );
     
 }

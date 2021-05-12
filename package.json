@@ -1,6 +1,6 @@
 {
   "name": "spreadsheet-json",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^3.0.6",

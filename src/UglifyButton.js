@@ -1,7 +1,7 @@
 import React           from 'react';
 import { FileZipIcon } from '@primer/octicons-react';
 
-const UglifyButton = ({setIndent}) => {
+const UglifyButton = ({edit, setIndent}) => {
     
     const uglify = () => {
         
@@ -10,7 +10,7 @@ const UglifyButton = ({setIndent}) => {
     }
     
     return(
-        <button className = 'Ugly' onClick = {uglify}><FileZipIcon/>Uglify</button>
+        <button disabled = {edit} className = 'Ugly' onClick = {uglify}><FileZipIcon/>Uglify</button>
     );
     
 }

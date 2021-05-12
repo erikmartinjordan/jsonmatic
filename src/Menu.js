@@ -290,10 +290,14 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
             }   
             
         }
-        
-        window.addEventListener('keydown',     onDown);
-        window.addEventListener('contextmenu', onRightClick);
-        window.addEventListener('click',       onLeftClick);
+
+        if(select.some(el => el !== '')){
+
+            window.addEventListener('keydown',     onDown);
+            window.addEventListener('contextmenu', onRightClick);
+            window.addEventListener('click',       onLeftClick);
+
+        }
         
         return () => {
             

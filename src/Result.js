@@ -1,13 +1,15 @@
-import React, { useState }                           from 'react';
+import React, {  useState }                          from 'react';
 import IndentSelector                                from './IndentSelector';
 import BeautifyButton                                from './BeautifyButton';
 import UglifyButton                                  from './UglifyButton';
+import TextareaIndent                                from './TextareaIndent';
 import { saveAs }                                    from 'file-saver';
 import { ClippyIcon, CheckCircleIcon, DownloadIcon } from '@primer/octicons-react';
 
-const Result = ({json}) => {
+const Result = ({json, setJson}) => {
     
     const [alert, setAlert]   = useState(null);
+    const [edit, setEdit]     = useState(false);
     const [indent, setIndent] = useState(2);
     
     const copy = () => {
@@ -41,22 +43,31 @@ const Result = ({json}) => {
         <div className = 'Result'>
             <div className = 'Options'>
                 <BeautifyButton 
+                    edit      = {edit}
                     indent    = {indent}
                     setIndent = {setIndent}
                 />
                 <UglifyButton
+                    edit      = {edit}
                     indent    = {indent}
                     setIndent = {setIndent}
                 />
                 <IndentSelector
+                    edit      = {edit}
                     indent    = {indent}
                     setIndent = {setIndent}
                 />
             </div>
-            <textarea value = {JSON.stringify(json, null, parseInt(indent))} readOnly = {true}/>
+            <TextareaIndent
+                edit     = {edit}
+                setEdit  = {setEdit}
+                indent   = {indent}
+                json     = {json}
+                setJson  = {setJson}
+            />
             <div className = 'Actions'>
-                <button onClick = {copy}>    { alert !== 'copied'     ? <><ClippyIcon/>Copy JSON</>       : <><CheckCircleIcon/>Copied</>}</button>
-                <button onClick = {download}>{ alert !== 'downloaded' ? <><DownloadIcon/>Download JSON</> : <><CheckCircleIcon/>Downloading</>}</button>
+                <button disabled = {edit} onClick = {copy}>    { alert !== 'copied'     ? <><ClippyIcon/>Copy JSON</>       : <><CheckCircleIcon/>Copied</>}</button>
+                <button disabled = {edit} onClick = {download}>{ alert !== 'downloaded' ? <><DownloadIcon/>Download JSON</> : <><CheckCircleIcon/>Downloading</>}</button>
             </div>
         </div>
     );
