@@ -1,3 +1,11 @@
+## 12.05.21 — JSON edition
+
+![](https://github.com/erikmartinjordan/Screenshots/blob/master/May-12-2021%2013-05-23.gif?raw=true)
+
+* Edit JSON textarea
+* Buttons are disabled while JSON edition
+* Fixed bug: listener of keyboard active when some table cell is selected
+
 ## 05.05.21 — Multiple JSON merge
 
 ![Merge JSON files](https://github.com/erikmartinjordan/Screenshots/blob/master/May-05-2021%2012-47-05.gif?raw=true)
