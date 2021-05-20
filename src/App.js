@@ -3,7 +3,8 @@ import useUndoableState     from './useUndoableState';
 import Header               from './Header';
 import Result               from './Result';
 import Table                from './Table';
-import TransformButton      from './TransformButton';
+import TransformToJSON      from './TransformToJSON';
+import TransformToCSV       from './TransformToCSV';
 import Menu                 from './Menu';
 import Analytics            from './Analytics';
 
@@ -61,11 +62,18 @@ const App = () => {
                     select    = {select}
                     setSelect = {setSelect}
                 />
-                <TransformButton
-                    csv     = {csv}
-                    json    = {json} 
-                    setJson = {setJson}    
-                />
+                <div className = 'Buttons'>
+                    <TransformToJSON
+                        csv     = {csv}
+                        json    = {json} 
+                        setJson = {setJson}    
+                    />
+                    <TransformToCSV
+                        json    = {json} 
+                        csv     = {csv}
+                        setCsv  = {setCsv}    
+                    />
+                </div>
                 <Result 
                     json    = {json}
                     setJson = {setJson}

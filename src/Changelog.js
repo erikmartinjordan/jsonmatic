@@ -24,7 +24,12 @@ const Changelog = () => {
     return(
         <div className = 'Changelog'>
             <h1>What's new?</h1>
-            <ReactMarkdown children = {markdown}/>
+            <ReactMarkdown 
+                children   = {markdown}
+                components = {{
+                    img: ({src}) => <img loading = 'lazy' src = {src}></img>
+                }}
+            />
         </div>
     );
     

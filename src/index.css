@@ -148,6 +148,13 @@ select::-ms-expand {
     justify-content: space-between;
     padding: 20px;
 }
+.App .Buttons{
+    display: flex;
+    flex-direction: column;
+}
+.App .Buttons button{
+    width: 170px;
+}
 .App .Table{
     border: 1px solid #e1e4e8;
     border-radius: 12px;
@@ -173,6 +180,7 @@ select::-ms-expand {
     border: 1px solid #e1e4e8;
     min-width: 50px;
     padding: 20px;
+    position: relative;
 }
 .App .Table table td.Selected{
     background: #f1f8ff;
@@ -181,7 +189,19 @@ select::-ms-expand {
 .App .Table table td input{
     border: none;
     background: transparent;
+    outline: none;
+    overflow: auto;
+    resize: both;
     width: 75px;
+}
+.App .Table table td .Dragger{
+    cursor: col-resize;
+    height: 100%;
+    position: absolute;
+    right: -6px;
+    top: 0;
+    width: 12px;
+    z-index:999999;
 }
 .App .Footer{
     margin-top: auto;

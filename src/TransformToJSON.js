@@ -3,17 +3,7 @@ import moment             from 'moment';
 import { ArrowRightIcon } from '@primer/octicons-react';
 import firebase           from './Firebase';
 
-const TransformButton = ({csv, json, setJson}) => {
-    
-    const addToDB = async (json) => {
-        
-        const today = moment().format('YYYYMMDD hh:mm:ss SSS');
-        
-        const db = firebase.firestore();
-        
-        await db.collection('json_generated').doc(today).set({result: json});   
-        
-    }
+const TransformToJSON = ({csv, json, setJson}) => {
     
     const generateJSON = (csv) => {
         
@@ -85,7 +75,6 @@ const TransformButton = ({csv, json, setJson}) => {
         else{
             
             setJson(res);
-            addToDB(res);
             
         }
         
@@ -99,4 +88,4 @@ const TransformButton = ({csv, json, setJson}) => {
     
 }
 
-export default TransformButton;
+export default TransformToJSON;
