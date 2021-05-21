@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 const Table = ({csv, setCsv, select, setSelect}) => {
     
     const [drag, setDrag] = useState(false);
+    const [resize, setResize] = useState(false);
     
     useEffect(() => {
         
@@ -54,9 +55,9 @@ const Table = ({csv, setCsv, select, setSelect}) => {
     
     const handleMultipleSel = (e, row, col) => {
         
-        e.preventDefault();
-        
         if(drag){
+
+            e.preventDefault();
             
             let [iniRow, iniCol, endRow, endCol] = select;
             
@@ -91,6 +92,40 @@ const Table = ({csv, setCsv, select, setSelect}) => {
             return 'Selected';
         
     }
+
+    const resizeColumn = (e, col) => {
+
+        e.preventDefault();
+
+        if(resize.col === col && e.clientX){
+
+            let elem = document.getElementById(`input0${col}`);
+
+            elem.style.width = `${Math.max(75, parseInt(resize.initialSize) + parseInt(e.clientX - resize.initialPos))}px`;
+
+        }
+
+    }
+
+    const handleMouseDownDragger = (e, col) => {
+
+        e.stopPropagation();
+
+        let elem = document.getElementById(`input0${col}`);
+
+        setResize({
+            col: col,
+            initialPos: e.clientX,
+            initialSize: elem.offsetWidth
+        });
+
+    }
+
+    const handleMouseUpDragger = (e) => {
+
+        setResize(false);
+
+    }
     
     return(
         <div className = 'Table' id = 'Table'>
@@ -105,7 +140,19 @@ const Table = ({csv, setCsv, select, setSelect}) => {
                                 onMouseUp     = {(e) => handleMouseUp(e, i, j)}
                                 onMouseMove   = {(e) => handleMultipleSel(e, i, j)}
                                 className     = {getClassName(i, j)}>
-                                    <input value = {csv[i][j]} onChange = {(e) => editValue(e, i, j)}></input>
+                                    <input 
+                                        id       = {`input${i}${j}`}
+                                        value    = {csv[i][j]} 
+                                        onChange = {(e) => editValue(e, i, j)}>
+                                    </input>
+                                    <div 
+                                        className   = 'Dragger' 
+                                        draggable   = {true}
+                                        id          = {j} 
+                                        onMouseDown = {(e) => handleMouseDownDragger(e, j)}
+                                        onMouseUp   = {(e) => handleMouseUpDragger(e)}
+                                        onDrag      = {(e) => resizeColumn(e, j)}>
+                                    </div>
                             </td>)}
                         </tr>
                     )}

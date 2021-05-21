@@ -159,6 +159,7 @@ select::-ms-expand {
     border: 1px solid #e1e4e8;
     border-radius: 12px;
     max-height: 500px;
+    overflow-x: hidden;
     overflow-y: auto;
 }
 .App .Table table{
@@ -198,9 +199,9 @@ select::-ms-expand {
     cursor: col-resize;
     height: 100%;
     position: absolute;
-    right: -6px;
+    right: -5px;
     top: 0;
-    width: 12px;
+    width: 10px;
     z-index:999999;
 }
 .App .Footer{
