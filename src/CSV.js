@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Table = ({csv, setCsv, select, setSelect}) => {
+const CSV = ({csv, setCsv, select, setSelect}) => {
     
     const [drag, setDrag] = useState(false);
     const [resize, setResize] = useState(false);
@@ -174,4 +174,4 @@ const Table = ({csv, setCsv, select, setSelect}) => {
     
 }
 
-export default Table;
+export default CSV;
