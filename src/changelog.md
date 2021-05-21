@@ -1,5 +1,7 @@
 ## 21.05.21 — Resize table
 
+![Resize table](https://github.com/erikmartinjordan/Screenshots/blob/master/May-21-2021%2011-31-56.gif?raw=true)
+
 * Resizable table
 * Autoresize on double click
 * Disabled "Generate CSV" button while editing JSON
@@ -10,7 +12,7 @@
 
 ## 12.05.21 — JSON edition
 
-![](https://github.com/erikmartinjordan/Screenshots/blob/master/May-12-2021%2013-05-23.gif?raw=true)
+![JSON edition](https://github.com/erikmartinjordan/Screenshots/blob/master/May-12-2021%2013-05-23.gif?raw=true)
 
 * Edit JSON textarea
 * Buttons are disabled while JSON edition
