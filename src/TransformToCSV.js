@@ -3,8 +3,6 @@ import { ArrowLeftIcon }  from '@primer/octicons-react';
 
 const TransformToCSV = ({json, edit, csv, setCsv}) => {
 
-    console.log(edit);
-
     const getDeepKeys = (obj) => {
 
         let keys = Object.keys(obj).map(key => {
