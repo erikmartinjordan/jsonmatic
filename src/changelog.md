@@ -1,3 +1,9 @@
+## 21.05.21 — Resize table
+
+* Resizable table
+* Autoresize on double click
+* Disabled "Generate CSV" button while editing JSON
+
 ## 20.05.21 — Transform JSON into CSV
 
 * Transform JSON into CSV
