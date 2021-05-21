@@ -1,7 +1,9 @@
 import React              from 'react';
 import { ArrowLeftIcon }  from '@primer/octicons-react';
 
-const TransformToCSV = ({json, csv, setCsv}) => {
+const TransformToCSV = ({json, edit, csv, setCsv}) => {
+
+    console.log(edit);
 
     const getDeepKeys = (obj) => {
 
@@ -50,7 +52,7 @@ const TransformToCSV = ({json, csv, setCsv}) => {
     }
     
     return(
-        <button onClick = {transformToCSV}>
+        <button onClick = {transformToCSV} disabled = {edit}>
             <ArrowLeftIcon/>Generate CSV
         </button>
     );
