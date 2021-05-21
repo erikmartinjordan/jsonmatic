@@ -107,6 +107,16 @@ const Table = ({csv, setCsv, select, setSelect}) => {
 
     }
 
+    const autoResizeColumn = (e, col) => {
+
+        let longestRow = csv.reduce((acc, elem, row) => csv[acc][col].toString().length > csv[row][col].toString().length ? acc : row, 0);
+
+        let elem = document.getElementById(`input${longestRow}${col}`);
+
+        elem.style.width = csv[longestRow][col].toString().length + 0.5 + 'ch';
+
+    }
+
     const handleMouseDownDragger = (e, col) => {
 
         e.stopPropagation();
@@ -146,12 +156,13 @@ const Table = ({csv, setCsv, select, setSelect}) => {
                                         onChange = {(e) => editValue(e, i, j)}>
                                     </input>
                                     <div 
-                                        className   = 'Dragger' 
-                                        draggable   = {true}
-                                        id          = {j} 
-                                        onMouseDown = {(e) => handleMouseDownDragger(e, j)}
-                                        onMouseUp   = {(e) => handleMouseUpDragger(e)}
-                                        onDrag      = {(e) => resizeColumn(e, j)}>
+                                        className     = 'Dragger' 
+                                        draggable     = {true}
+                                        id            = {j} 
+                                        onMouseDown   = {(e) => handleMouseDownDragger(e, j)}
+                                        onMouseUp     = {(e) => handleMouseUpDragger(e)}
+                                        onDrag        = {(e) => resizeColumn(e, j)}
+                                        onDoubleClick = {(e) => autoResizeColumn(e, j)}>
                                     </div>
                             </td>)}
                         </tr>
