@@ -6,7 +6,7 @@ import TextareaIndent                                from './TextareaIndent';
 import { saveAs }                                    from 'file-saver';
 import { ClippyIcon, CheckCircleIcon, DownloadIcon } from '@primer/octicons-react';
 
-const JSON = ({edit, json, setEdit, setJson}) => {
+const Json = ({edit, json, setEdit, setJson}) => {
     
     const [alert, setAlert]   = useState(null);
     const [indent, setIndent] = useState(2);
@@ -73,4 +73,4 @@ const JSON = ({edit, json, setEdit, setJson}) => {
     
 }
 
-export default JSON;
+export default Json;

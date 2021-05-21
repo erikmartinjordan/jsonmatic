@@ -1,8 +1,8 @@
 import React, { useState }  from 'react';
 import useUndoableState     from './useUndoableState';
 import Header               from './Header';
-import JSON                 from './JSON';
-import CSV                  from './CSV';
+import Json                 from './Json';
+import Csv                  from './Csv';
 import TransformToJSON      from './TransformToJSON';
 import TransformToCSV       from './TransformToCSV';
 import Menu                 from './Menu';
@@ -57,7 +57,7 @@ const App = () => {
         <div className = 'App'>
             <Header/>
             <div className = 'Content'>
-                <CSV 
+                <Csv 
                     csv       = {csv}
                     setCsv    = {setCsv}
                     select    = {select}
@@ -76,7 +76,7 @@ const App = () => {
                         setCsv  = {setCsv}    
                     />
                 </div>
-                <JSON
+                <Json
                     edit    = {edit} 
                     json    = {json}
                     setEdit = {setEdit}
