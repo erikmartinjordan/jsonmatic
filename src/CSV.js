@@ -111,9 +111,7 @@ const Csv = ({csv, setCsv, select, setSelect}) => {
 
         let longestRow = csv.reduce((acc, elem, row) => csv[acc][col].toString().length > csv[row][col].toString().length ? acc : row, 0);
 
-        let elem = document.getElementById(`input${longestRow}${col}`);
-
-        elem.style.width = csv[longestRow][col].toString().length + 0.5 + 'ch';
+        csv.forEach((_, row) => document.getElementById(`input${row}${col}`).style.width = csv[longestRow][col].toString().length + 0.5 + 'ch');
 
     }
 
