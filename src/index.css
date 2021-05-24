@@ -82,6 +82,11 @@ select::-ms-expand {
     0%    {transform: rotate(180deg);}
     100%  {transform: rotate(0);}
 }
+@keyframes appear{
+    0%    {transform: translateY( 3px); opacity: 0;}
+    50%   {transform: translateY(-1px); opacity: 0.5;}
+    100%  {transform: translateY( 0px); opacity: 1;}
+}
 /*
  * 
  * App
@@ -159,7 +164,8 @@ select::-ms-expand {
     border: 1px solid #e1e4e8;
     border-radius: 12px;
     max-height: 500px;
-    overflow-x: hidden;
+    max-width: 800px;
+    overflow-x: auto;
     overflow-y: auto;
 }
 .App .Table table{
@@ -203,6 +209,9 @@ select::-ms-expand {
     top: 0;
     width: 10px;
     z-index:999999;
+}
+.App .Table table td:last-of-type .Dragger{
+    right: 0px;
 }
 .App .Footer{
     margin-top: auto;
@@ -393,12 +402,18 @@ select::-ms-expand {
     border: 3px dashed #e1e4e8;
     border-radius: 12px;
     display: flex;
+    flex-direction: column;
     font-weight: 500;
     justify-content: center;
     max-width: 500px;
     padding: 20px;
     position: relative;
     text-align: center;
+}
+.Multiple .Upload .Hint{
+    animation: 0.5s appear ease-in-out;
+    font-size: small;
+    margin-top: 10px;
 }
 .Multiple .Grid .Upload{
     height: 200px;

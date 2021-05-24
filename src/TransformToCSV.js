@@ -28,6 +28,15 @@ const TransformToCSV = ({json, edit, csv, setCsv}) => {
     
     const transformToCSV = async () => {
 
+        setCsv([
+        
+            ['...', '...', '...', '...', '...'],
+            ['...', '...', '...', '...', '...'],
+            ['...', '...', '...', '...', '...'],
+            ['...', '...', '...', '...', '...'],
+            
+        ]);
+
         let keys = getDeepKeys(json);
 
         let firstRow = ['key', ...new Set(keys.map(key => key.split('.').slice(1).join('.')))];
@@ -44,6 +53,8 @@ const TransformToCSV = ({json, edit, csv, setCsv}) => {
 
             }
         }
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
         setCsv(csv);
         

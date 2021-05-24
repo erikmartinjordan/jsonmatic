@@ -314,17 +314,17 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
             { menu
             ? <div className = 'Menu' style = {{position: 'absolute', top: pos.y, left: pos.x}}>
                 <ul>
-                    <li onClick = {copy}><CopyIcon/>Copy <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+C</div></li>
-                    <li onClick = {paste}><ClippyIcon/>Paste <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+V</div></li>
+                    <li onClick = {copy}><CopyIcon/>Copy <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}C</div></li>
+                    <li onClick = {paste}><ClippyIcon/>Paste <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}V</div></li>
                     <hr></hr>
-                    <li onClick = {undo}><ArrowLeftIcon/>Undo <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+Z</div></li>
-                    <li onClick = {redo}><ArrowRightIcon/>Redo <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+Shift+Z</div></li>
+                    <li onClick = {undo}><ArrowLeftIcon/>Undo <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}Z</div></li>
+                    <li onClick = {redo}><ArrowRightIcon/>Redo <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}⇧Z</div></li>
                     <hr></hr>
-                    <li onClick = {addRow}><EllipsisIcon/>Add row <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+↓</div></li>
-                    <li onClick = {addCol}><span style = {{transform: 'rotate(90deg)'}}><EllipsisIcon/></span>Add column<div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+→</div></li>
+                    <li onClick = {addRow}><EllipsisIcon/>Add row <div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}↓</div></li>
+                    <li onClick = {addCol}><span style = {{transform: 'rotate(90deg)'}}><EllipsisIcon/></span>Add column<div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}→</div></li>
                     <hr></hr>
-                    <li onClick = {deleteRows}><span style = {{color: 'rgb(235, 87, 87)'}}>Delete row(s)</span><div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+↑</div></li>
-                    <li onClick = {deleteCols}><span style = {{color: 'rgb(235, 87, 87)'}}>Delete column(s)</span><div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}+←</div></li>
+                    <li onClick = {deleteRows}><span style = {{color: 'rgb(235, 87, 87)'}}>Delete row(s)</span><div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}↑</div></li>
+                    <li onClick = {deleteCols}><span style = {{color: 'rgb(235, 87, 87)'}}>Delete column(s)</span><div className = 'Hint'>{OS === 'Mac' ? '⌘' : 'ctrl'}←</div></li>
                 </ul>  
               </div>
             : null

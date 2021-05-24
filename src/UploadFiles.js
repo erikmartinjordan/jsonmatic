@@ -1,7 +1,43 @@
-import React                           from 'react';
+import React, { useEffect, useState }  from 'react';
 import { UploadIcon, PlusCircleIcon }  from '@primer/octicons-react';
 
 const UploadFiles = ({jsonfiles, setJsonfiles}) => {
+
+    const [OS, setOS] = useState(null);
+    
+    useEffect(() => {
+        
+        let macOS = ['iPhone', 'iPad', 'Mac', 'iPod'];
+        
+        let currentOS = navigator.platform;
+        
+        let isMac = macOS.some(device => currentOS.includes(device));
+        
+        if(isMac) 
+            setOS('Mac');
+
+        const onDown = async (e) => {
+        
+            if((e.ctrlKey && e.key === 'u') || (e.metaKey && e.key === 'u')){
+                
+                e.preventDefault();
+                
+                document.getElementById('upload').click();
+                
+            }
+            
+        }
+
+        window.addEventListener('keydown', onDown);
+
+        
+        return () => {
+            
+            window.removeEventListener('keydown', onDown);
+            
+        }
+        
+    }, []);
     
     const upload = async (e) => {
         
@@ -35,8 +71,11 @@ const UploadFiles = ({jsonfiles, setJsonfiles}) => {
             { jsonfiles.length === 0
             ? <React.Fragment>
                 <div className = 'Upload'>
-                    <UploadIcon/>Click here to upload files
-                    <input onChange = {upload} type = 'file' title = '' multiple/>
+                    <div>
+                        <UploadIcon/>Click here to upload files
+                        <input onChange = {upload} id = 'upload' type = 'file' title = '' multiple/>
+                    </div>
+                    <div className = 'Hint'>Or press {OS === 'Mac' ? '⌘' : 'ctrl'}U</div>
                 </div> 
               </React.Fragment>
             : <React.Fragment>
