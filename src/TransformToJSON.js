@@ -1,7 +1,5 @@
 import React              from 'react';
-import moment             from 'moment';
 import { ArrowRightIcon } from '@primer/octicons-react';
-import firebase           from './Firebase';
 
 const TransformToJSON = ({csv, json, setJson}) => {
     
