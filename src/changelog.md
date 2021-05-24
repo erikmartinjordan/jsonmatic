@@ -1,3 +1,10 @@
+## 24.05.21 – Keyboard shortcut to upload files
+
+* Added keyboard control to upload files
+* Added dummy CSV animation when transforming JSON
+* Deleted '+' sign on keyboard shortcuts hint because it can create confusion
+* Added animation to keyboard hint on 'Upload' component
+
 ## 21.05.21 — Resize table
 
 ![Resize table](https://github.com/erikmartinjordan/Screenshots/blob/master/May-21-2021%2011-31-56.gif?raw=true)
