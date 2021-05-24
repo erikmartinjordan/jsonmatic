@@ -27,7 +27,7 @@ const Changelog = () => {
             <ReactMarkdown 
                 children   = {markdown}
                 components = {{
-                    img: ({src}) => <img loading = 'lazy' src = {src}></img>
+                    img: ({src}) => <img alt = 'Changelog' loading = 'lazy' src = {src}></img>
                 }}
             />
         </div>
