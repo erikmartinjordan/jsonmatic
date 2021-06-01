@@ -236,14 +236,15 @@ select::-ms-expand {
     border-radius: 12px;
     height: 590px;
     outline: none;
-    padding: 20px;
     position: relative;
     width: 590px;
 }
 .App .Result .TextareaIndent textarea{
     border: none;
+    border-radius: 12px;
     height: 100%;
     outline: none;
+    padding: 20px;
     resize: none;
     width: 100%;
 }
@@ -251,8 +252,8 @@ select::-ms-expand {
     color: red;
     font-size: 12px;
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 20px;
+    top: 20px;
 }
 .App .Options{
     align-self: flex-end;

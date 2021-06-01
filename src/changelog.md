@@ -1,3 +1,7 @@
+## 01.06.21 – Randomize JSON
+
+* Create a dummy JSON
+
 ## 24.05.21 – Keyboard shortcut to upload files
 
 * Added keyboard control to upload files

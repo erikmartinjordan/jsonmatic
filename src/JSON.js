@@ -2,6 +2,7 @@ import React, {  useState }                          from 'react';
 import IndentSelector                                from './IndentSelector';
 import BeautifyButton                                from './BeautifyButton';
 import UglifyButton                                  from './UglifyButton';
+import RandomButton                                  from './RandomButton';
 import TextareaIndent                                from './TextareaIndent';
 import { saveAs }                                    from 'file-saver';
 import { ClippyIcon, CheckCircleIcon, DownloadIcon } from '@primer/octicons-react';
@@ -41,6 +42,10 @@ const Json = ({edit, json, setEdit, setJson}) => {
     return(
         <div className = 'Result'>
             <div className = 'Options'>
+                <RandomButton
+                    edit      = {edit}
+                    setJson   = {setJson}
+                />
                 <BeautifyButton 
                     edit      = {edit}
                     indent    = {indent}
