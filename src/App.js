@@ -6,7 +6,6 @@ import Csv                  from './Csv';
 import TransformToJSON      from './TransformToJSON';
 import TransformToCSV       from './TransformToCSV';
 import Menu                 from './Menu';
-import Analytics            from './Analytics';
 
 const App = () => {
     
@@ -91,7 +90,6 @@ const App = () => {
                 undo        = {undo}
                 redo        = {redo}
             />
-            <Analytics/>
         </div>
     );
     
