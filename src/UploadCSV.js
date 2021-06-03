@@ -11,13 +11,13 @@ const UploadCSV = ({setCsv}) => {
 
             let raw = reader.result;
 
-            let csv = raw.split(`\n`).map(line => line.split(',')); 
+            let csv = raw.split(/\r\n|\n|\r/).map(line => line.split(',')); 
 
             setCsv(csv);
 
         };
 
-        reader.readAsBinaryString(e.target.files[0]);
+        reader.readAsText(e.target.files[0]);
 
     }
 
