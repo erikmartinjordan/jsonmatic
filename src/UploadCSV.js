@@ -21,12 +21,12 @@ const UploadCSV = ({setCsv}) => {
 
     }
 
-    const simulateClick = () => document.getElementById('upload').click();
+    const simulateClick = () => document.getElementById('uploadCSV').click();
 
     return(
         <div className = 'UploadCSV'>
             <button onClick = {simulateClick}><UploadIcon/> Upload CSV</button>
-            <input onChange = {upload} id = 'upload' type = 'file'/>
+            <input onChange = {upload} id = 'uploadCSV' type = 'file'/>
         </div>
     );
 

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import UploadCSV                      from './UploadCSV';
+import CopyCSV                        from './CopyCSV';
+import DownloadCSV                    from './DownloadCSV';
 
 const Csv = ({csv, setCsv, select, setSelect}) => {
     
@@ -171,7 +173,15 @@ const Csv = ({csv, setCsv, select, setSelect}) => {
                 </table>
             </div>
             <div className = 'Actions'>
-                <UploadCSV setCsv = {setCsv}/>
+                <CopyCSV     
+                    csv = {csv}
+                />
+                <UploadCSV   
+                    setCsv = {setCsv}
+                />
+                <DownloadCSV 
+                    csv = {csv}
+                />
             </div>
         </div>
     );
