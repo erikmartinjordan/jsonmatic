@@ -245,6 +245,8 @@ select::-ms-expand {
 .App .Result .TextareaIndent textarea{
     border: none;
     border-radius: 12px;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; 
+    font-size: 14px;
     height: 100%;
     outline: none;
     padding: 20px;
