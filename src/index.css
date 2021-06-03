@@ -511,5 +511,8 @@ select::-ms-expand {
         flex-direction: column;
         max-width: 100%;
     }
+    .App .Result .TextareaIndent{
+       width: 100%;
+    }
     
 }
