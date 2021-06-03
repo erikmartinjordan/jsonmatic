@@ -1,3 +1,8 @@
+## 03.06.21 – Upload CSV
+
+* Option to upload CSV instead of just copy/paste
+* Fixed textarea on mobile devices 
+
 ## 01.06.21 – Randomize JSON
 
 * Create a dummy JSON

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import UploadCSV                      from './UploadCSV';
 
 const Csv = ({csv, setCsv, select, setSelect}) => {
     
@@ -136,37 +137,42 @@ const Csv = ({csv, setCsv, select, setSelect}) => {
     }
     
     return(
-        <div className = 'Table' id = 'Table'>
-            <table>
-                <tbody>
-                    {csv.map((row, i) => 
-                        <tr key = {i}>{csv[i].map((column, j) => 
-                            <td key           = {j}
-                                id            = {`${i}${j}`}
-                                onClick       = {(e) => selectBox(i, j)}
-                                onMouseDown   = {(e) => handleMouseDown(e, i, j)}
-                                onMouseUp     = {(e) => handleMouseUp(e, i, j)}
-                                onMouseMove   = {(e) => handleMultipleSel(e, i, j)}
-                                className     = {getClassName(i, j)}>
-                                    <input 
-                                        id       = {`input${i}${j}`}
-                                        value    = {csv[i][j]} 
-                                        onChange = {(e) => editValue(e, i, j)}>
-                                    </input>
-                                    <div 
-                                        className     = 'Dragger' 
-                                        draggable     = {true}
-                                        id            = {j} 
-                                        onMouseDown   = {(e) => handleMouseDownDragger(e, j)}
-                                        onMouseUp     = {(e) => handleMouseUpDragger(e)}
-                                        onDrag        = {(e) => resizeColumn(e, j)}
-                                        onDoubleClick = {(e) => autoResizeColumn(e, j)}>
-                                    </div>
-                            </td>)}
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+        <div className = 'Csv'>
+            <div className = 'Table' id = 'Table'>
+                <table>
+                    <tbody>
+                        {csv.map((row, i) => 
+                            <tr key = {i}>{csv[i].map((column, j) => 
+                                <td key           = {j}
+                                    id            = {`${i}${j}`}
+                                    onClick       = {(e) => selectBox(i, j)}
+                                    onMouseDown   = {(e) => handleMouseDown(e, i, j)}
+                                    onMouseUp     = {(e) => handleMouseUp(e, i, j)}
+                                    onMouseMove   = {(e) => handleMultipleSel(e, i, j)}
+                                    className     = {getClassName(i, j)}>
+                                        <input 
+                                            id       = {`input${i}${j}`}
+                                            value    = {csv[i][j]} 
+                                            onChange = {(e) => editValue(e, i, j)}>
+                                        </input>
+                                        <div 
+                                            className     = 'Dragger' 
+                                            draggable     = {true}
+                                            id            = {j} 
+                                            onMouseDown   = {(e) => handleMouseDownDragger(e, j)}
+                                            onMouseUp     = {(e) => handleMouseUpDragger(e)}
+                                            onDrag        = {(e) => resizeColumn(e, j)}
+                                            onDoubleClick = {(e) => autoResizeColumn(e, j)}>
+                                        </div>
+                                </td>)}
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+            <div className = 'Actions'>
+                <UploadCSV setCsv = {setCsv}/>
+            </div>
         </div>
     );
     

@@ -221,6 +221,9 @@ select::-ms-expand {
     font-size: small;
     margin-left: auto;
 }
+.App .UploadCSV input[type='file']{
+    display: none;
+}
 /*
  * 
  * Result 
