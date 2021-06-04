@@ -1,7 +1,7 @@
 ## 04.06.21 – New copy/download options and bug fixing
 
 * Fixed splitting on reading a CSV
-* Updated textarea font to `monospace` as suggested in HN
+* Updated textarea font to `monospace` as suggested on HN
 * Removed `fingerprintjs` and analytics component
 * Added CSV copy/download options
 * Replaced dot separator with `__separator__` on TransformToCSV component
