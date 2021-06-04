@@ -62,7 +62,7 @@ const TransformToJSON = ({csv, json, setJson}) => {
         
         if(duplicateKeys){
             
-            setJson({'Error': 'JSON has duplicated keys'});
+            setJson({'Error': 'JSON has duplicate keys'});
             
         }
         else if(firstRowEmpty){
