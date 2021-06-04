@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { validateJSON }               from '../Functions/utils';
 
 const TextareaIndent = ({edit, setEdit, indent, json, setJson}) => {
 
@@ -30,16 +31,18 @@ const TextareaIndent = ({edit, setEdit, indent, json, setJson}) => {
 
     const endEdition = () => {
 
-        try{
+        let validation = validateJSON(text.value);
+        
+        if(validation === 'ok'){
 
             setJson(JSON.parse(text.value));
-            setEdit(false);
-
+            setEdit(false);            
+            
         }
-        catch(e){
-
-            setAlert('Invalid JSON');
-
+        else{
+            
+            setAlert(validation.error);
+            
         }
 
     }

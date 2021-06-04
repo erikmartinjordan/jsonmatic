@@ -1,7 +1,9 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { configure }                          from '@testing-library/dom';
-import App                                    from './App';
-import firebase, { environment }              from './Firebase';
+import App                                    from '../Components/App';
+import firebase, { environment }              from '../Functions/Firebase';
+import { transformToJSON, validateCSV, validateJSON }      from '../Functions/utils';
+import '@testing-library/jest-dom';
 
 configure({ asyncUtilTimeout: 5000 });
 
@@ -265,7 +267,7 @@ test('Copies JSON into the clipboard', async () => {
     
 });
 
-test('Downloads the file', async () => {
+test('Downloads the JSON', async () => {
     
     window.URL.createObjectURL = jest.fn();
     
@@ -277,8 +279,71 @@ test('Downloads the file', async () => {
     
 });
 
+test('First row should not be empty', async () => {
+
+    let csv = [
+        
+        ['',         '',     '',           '',          ''],
+        ['test.1',   'AP-7', 42.02,        2.82,        '🦄'],
+        ['test.2',   'C-32', 41.35,        2.09,        '🦧'],
+        ['test.3',   'B-20', 41.44,        2.18,        '🐰'],
+        
+    ];
+
+    let res = validateCSV(csv);
+
+    expect(res).toStrictEqual({error: `First row shouldn't be empty`});
+
+});
+
+test('#1 CSV -> JSON', async () => {
+
+    let csv = [
+        
+        ['key', 'road', 'coord.lat',  'coord.lng', 'elem'],
+        ['test.1',   'AP-7', 42.02,        2.82,        '🦄'],
+        ['test.2',   'C-32', 41.35,        2.09,        '🦧'],
+        ['test.3',   'B-20', 41.44,        2.18,        '🐰'],
+        
+    ];
+
+    let res = transformToJSON(csv);
+
+    expect(res).toStrictEqual({
+        "test.1": {
+            "road": "AP-7",
+            "coord": {
+                "lat": 42.02,
+                "lng": 2.82
+            },
+            "elem": "🦄"
+        },
+        "test.2": {
+            "road": "C-32",
+            "coord": {
+                "lat": 41.35,
+                "lng": 2.09
+            },
+            "elem": "🦧"
+        }, 
+        "test.3": {
+            "road": "B-20",
+            "coord": {
+                "lat": 41.44,
+                "lng": 2.18
+            },
+            "elem": "🐰"
+        }
+    });
+
+});
+
 test('App is in PRO', async () => {
     
     expect(environment).toBe('PRO');
     
 });
+
+// Tests to build:
+// 'Copies CSV into the clipboard'
+// 'Downloads the CSV'

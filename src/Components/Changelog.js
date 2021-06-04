@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown                  from 'react-markdown';
-import changelog                      from './changelog.md';
+import changelog                      from '../Assets/changelog.md';
 
 const Changelog = () => {
     

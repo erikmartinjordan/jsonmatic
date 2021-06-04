@@ -1,15 +1,15 @@
-import App               from './App';
-import Changelog         from './Changelog';
-import MultipleReplaces  from './MultipleReplaces';
-import MultipleDeletions from './MultipleDeletions';
-import MultipleMerge     from './MultipleMerge';
-import Footer            from './Footer';
-import Seo               from './Seo';
 import React             from 'react';
 import ReactDOM          from 'react-dom';
 import { Switch, Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
-import './index.css';
+import App               from './Components/App';
+import Changelog         from './Components/Changelog';
+import MultipleReplaces  from './Components/MultipleReplaces';
+import MultipleDeletions from './Components/MultipleDeletions';
+import MultipleMerge     from './Components/MultipleMerge';
+import Footer            from './Components/Footer';
+import Seo               from './Components/Seo';
+import './Styles/index.css';
 
 ReactDOM.render(
     <BrowserRouter>
