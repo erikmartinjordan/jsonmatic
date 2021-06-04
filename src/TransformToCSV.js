@@ -11,7 +11,7 @@ const TransformToCSV = ({json, edit, csv, setCsv}) => {
 
                 let subkeys = getDeepKeys(obj[key]);
 
-                return subkeys.map(subkey => key + '.' + subkey);
+                return subkeys.map(subkey => key + '__separator__' + subkey);
 
             }
             else{
@@ -39,17 +39,17 @@ const TransformToCSV = ({json, edit, csv, setCsv}) => {
 
         let keys = getDeepKeys(json);
 
-        let firstRow = ['key', ...new Set(keys.map(key => key.split('.').slice(1).join('.')))];
-        let firstCol = ['key', ...new Set(keys.map(key => key.split('.').shift()))];
+        let firstRow = ['key', ...new Set(keys.map(key => key.split('__separator__').slice(1).join('__separator__')))];
+        let firstCol = ['key', ...new Set(keys.map(key => key.split('__separator__').shift()))];
 
         let csv = new Array(firstCol.length).fill('').map(() => new Array(firstRow.length).fill(''));
 
         for(let i = 0; i < firstCol.length; i ++){
             for(let j = 0; j < firstRow.length; j ++){
 
-                if(i === 0) csv[0][j] = firstRow[j];
-                if(j === 0) csv[i][0] = firstCol[i]; 
-                if(i && j)  csv[i][j] = `${firstCol[i]}.${firstRow[j]}`.split('.').reduce((ref, prop) => ref = ref?.[prop], json);
+                if(i === 0) csv[0][j] = firstRow[j].split('__separator__').join('.');
+                if(j === 0) csv[i][0] = firstCol[i].split('__separator__').join('.'); 
+                if(i && j)  csv[i][j] = `${firstCol[i]}__separator__${firstRow[j]}`.split('__separator__').reduce((ref, prop) => ref = ref?.[prop], json);
 
             }
         }
