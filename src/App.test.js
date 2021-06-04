@@ -90,7 +90,7 @@ test('Duplicate key displays an error', async () => {
     
     fireEvent.click(screen.getByText('Generate JSON'));
     
-    await waitFor(() => expect(screen.getByText('JSON has duplicate keys', {exact: false})).toBeInTheDocument()); 
+    await waitFor(() => expect(screen.getByText('JSON has duplicated keys', {exact: false})).toBeInTheDocument()); 
     
 });
 
