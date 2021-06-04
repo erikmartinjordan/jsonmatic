@@ -19,7 +19,7 @@ const TextareaIndent = ({edit, setEdit, indent, json, setJson}) => {
 
         }
 
-    }, [text]);
+    }, [indent, text]);
 
     const iniEdition = () => {
         
