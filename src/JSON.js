@@ -10,7 +10,6 @@ import DownloadJSON                                  from './DownloadJSON';
 
 const Json = ({edit, json, setEdit, setJson}) => {
     
-    const [alert, setAlert]   = useState(null);
     const [indent, setIndent] = useState(2);
     
     return(
