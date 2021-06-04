@@ -185,6 +185,17 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
         setSelect([0, 0, rows - 1, cols - 1]);
         
     }
+
+    const focus = () => {
+
+        let [iniRow, iniCol] = select;
+
+        let ref = document.getElementById(`input${iniRow}${iniCol}`);
+
+        if(ref) 
+            ref.focus();
+
+    }
     
     useEffect(() => {
         
@@ -258,6 +269,12 @@ const Menu = ({select, setSelect, csv, setCsv, undo, redo}) => {
                 
                 deleteValues();
                 
+            }
+
+            if(e.key.length === 1){
+
+                focus();
+
             }
             
         }
