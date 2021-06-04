@@ -5,7 +5,7 @@ import DownloadCSV                    from './DownloadCSV';
 
 const Csv = ({csv, setCsv, select, setSelect}) => {
     
-    const [drag, setDrag] = useState(false);
+    const [drag, setDrag]     = useState(false);
     const [resize, setResize] = useState(false);
     
     useEffect(() => {
@@ -24,6 +24,20 @@ const Csv = ({csv, setCsv, select, setSelect}) => {
         return () => window.removeEventListener('click', onClick);
       
     }, [select, setSelect]);
+
+    useEffect(() => {
+
+        let [iniRow, iniCol, endRow, endCol] = select;
+
+        let ref = document.getElementById(`input${iniRow}${iniCol}`);
+
+        if(ref) 
+            ref.focus();
+
+        if(iniRow !== endRow || iniCol !== endCol)
+            ref.blur();
+
+    }, [select]);
     
     const selectBox = (row, col) => {
         
