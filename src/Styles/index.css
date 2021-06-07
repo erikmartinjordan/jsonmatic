@@ -41,6 +41,7 @@ button{
     height: max-content;
     margin: 10px;
     padding: 10px;
+    white-space: nowrap;
     width: max-content;
 }
 button:hover{
@@ -365,6 +366,7 @@ select::-ms-expand {
     font-size: 14px;
     margin: 5px;
     text-decoration: none;
+    white-space: nowrap;
 }
 .Footer svg{
     width: 30px;
@@ -519,5 +521,25 @@ select::-ms-expand {
     .App .Result .TextareaIndent{
        width: 100%;
     }
-    
+    .App .Actions,
+    .App .Csv{
+        overflow-x: auto;
+        width: 100%;
+    }
+    .App .Buttons{
+        flex-direction: row;
+        margin-bottom: 50px;
+        margin-top: 50px;
+        padding: 20px;
+    }
+    .Footer{
+        flex-direction: column;
+        padding: 20px;
+    }
+    .Changelog{
+        padding: 20px;
+    }
+    .Multiple{
+        padding: 20px;
+    }
 }
