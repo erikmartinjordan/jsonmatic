@@ -1,7 +1,9 @@
 ## 07.06.21 – Project restructuration
 
+![Fixed screen issues mobile devices](https://github.com/erikmartinjordan/Screenshots/blob/master/Jun-07-2021%2012-42-31.gif?raw=true)
+
 * Restructured project in Functions, Components, Assets, Styles
-* Change icon of transform icons depending on screen resolution
+* Changed icon of transform buttons depending on screen resolution
 * Fixed screen issues on mobile devices
 
 ## 04.06.21 – New copy/download options and bug fixing
