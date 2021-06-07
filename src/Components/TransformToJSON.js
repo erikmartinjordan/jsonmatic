@@ -1,9 +1,11 @@
-import React                            from 'react';
-import { ArrowRightIcon }               from '@primer/octicons-react';
-import { transformToJSON, validateCSV } from '../Functions/utils'; 
-
+import React                             from 'react';
+import { ArrowRightIcon, ArrowDownIcon } from '@primer/octicons-react';
+import useWindowDimensions               from '../Functions/useWindowDimensions';
+import { transformToJSON, validateCSV }  from '../Functions/utils'; 
 
 const TransformToJSON = ({csv, setJson}) => {
+
+    const [width] = useWindowDimensions();
     
     const transform = async () => {
         
@@ -29,7 +31,7 @@ const TransformToJSON = ({csv, setJson}) => {
     
     return(
         <button onClick = {transform}>
-            <ArrowRightIcon/>Generate JSON
+            {width > 768 ? <ArrowRightIcon/> : <ArrowDownIcon/>}Generate JSON
         </button>
     );
     
