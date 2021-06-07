@@ -1,3 +1,9 @@
+## 07.06.21 – Project restructuration
+
+* Restructured project in Functions, Components, Assets, Styles
+* Change icon of transform icons depending on screen resolution
+* Fixed screen issues on mobile devices
+
 ## 04.06.21 – New copy/download options and bug fixing
 
 * Fixed splitting on reading a CSV
