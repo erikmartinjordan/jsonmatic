@@ -267,6 +267,41 @@ test('Copies JSON into the clipboard', async () => {
     
 });
 
+test('Copies CSV into the clipboad', async () => {
+
+    let csv = [
+        
+        ['key', 'road', 'coord.lat',  'coord.lng', 'elem'],
+        ['1',   'AP-7', 42.02,        2.82,        '🦄'],
+        ['2',   'C-32', 41.35,        2.09,        '🦧'],
+        ['3',   'B-20', 41.44,        2.18,        '🐰'],
+        ['4',   'AP-7', 41.42,        2.10,        '🦊']
+        
+    ].map(e => e.join(`\t`)).join(`\n`);
+
+    await render(<App/>);
+        
+    fireEvent.click(screen.getByDisplayValue('key'));
+    
+    await waitFor(() => expect(document.getElementById('00')).toHaveClass('Selected'));
+    
+    document.dispatchEvent(
+        new KeyboardEvent("keydown", {
+            key: "v",
+            ctrlKey: true,
+            bubbles: true,
+            metaKey: true   
+        })
+    );
+    
+    await waitFor(() => expect(screen.getByDisplayValue('AP-7')).toBeInTheDocument()); 
+
+    fireEvent.click(screen.getByText('Copy CSV'));
+
+    await waitFor(() => expect(screen.getByText('Copied', {exact: false})).toBeInTheDocument());
+
+})
+
 test('Downloads the JSON', async () => {
     
     window.URL.createObjectURL = jest.fn();
@@ -274,6 +309,18 @@ test('Downloads the JSON', async () => {
     await render(<App />);
     
     fireEvent.click(screen.getByText('Download JSON'));
+    
+    await waitFor(() => expect(screen.getByText('Downloading', {exact: false})).toBeInTheDocument());
+    
+});
+
+test('Downloads the CSV', async () => {
+    
+    window.URL.createObjectURL = jest.fn();
+    
+    await render(<App />);
+    
+    fireEvent.click(screen.getByText('Download CSV'));
     
     await waitFor(() => expect(screen.getByText('Downloading', {exact: false})).toBeInTheDocument());
     
@@ -343,7 +390,3 @@ test('App is in PRO', async () => {
     expect(environment).toBe('PRO');
     
 });
-
-// Tests to build:
-// 'Copies CSV into the clipboard'
-// 'Downloads the CSV'
