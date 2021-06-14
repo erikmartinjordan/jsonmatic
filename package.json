@@ -2,6 +2,7 @@
   "name": "spreadsheet-json",
   "version": "0.2.2",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@primer/octicons-react": "^12.1.0",
     "@testing-library/jest-dom": "^5.11.4",

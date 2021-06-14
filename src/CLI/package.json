@@ -1,0 +1,30 @@
+{
+  "name": "jsonmatic",
+  "version": "0.0.1",
+  "description": "Transform CSV (spreadhseet) into a JSON",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "bin":{
+    "jsonmatic": "index.js"
+  },
+  "keywords": [
+    "JSON",
+    "CSV",
+    "transform",
+    "spreadsheet"
+  ],
+  "author": "Erik Martín Jordán",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/erikmartinjordan/jsonmatic/issues"
+  },
+  "homepage": "https://github.com/erikmartinjordan/jsonmatic#readme",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "commander": "^7.2.0"
+  }
+}

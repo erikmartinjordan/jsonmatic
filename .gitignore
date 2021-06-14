@@ -22,3 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .firebase/hosting.YnVpbGQ.cache
+
+# CLI node-modules
+src/CLI/node_modules
