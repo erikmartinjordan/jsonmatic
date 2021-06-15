@@ -15,77 +15,69 @@ program
     .description('CLI');
 
 program
-    .option('-j, --json <file>', 'transform JSON to CSV')
-    .option('-c, --csv  <file>', 'transform CSV to JSON')
+    .command('jsonmatic')
+    .arguments('<source> <destinaton>')
+    .description('Transform a CSV into a JSON or vice versa')
+    .action((source, destination) => {
+
+        if     (source.endsWith('csv')  && destination.endsWith('json')) generateJSON(source, destination);
+        else if(source.endsWith('json') && destination.endsWith('csv'))  generateCSV(source, destination);
+        else   console.log(chalk.red('❌ The files are not valid.'));
+
+    })
     .parse();
 
-const options = program.opts();
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Check if arguments are correct
+// Defining the JSON generator
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if(options.json && options.csv){
-
-    console.log(chalk.red('❌ You can transform only one file at once.'));
-    console.log(chalk.green('✅ Use jsonmatic --json <name> to transform a JSON into a CSV'));
-    console.log(chalk.green('✅ Use jsonmatic --csv  <name> to transform a CSV into a JSON'));
-
-    process.exit(1);
-
-}
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Transform JSON into CSV
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if(options.json){
+function generateJSON(source, destination){
 
     try{
 
-        let rawdata = fs.readFileSync(options.json);
-        let json = JSON.parse(rawdata);
-
-        utils.validateJSON(json);
-        
-        let csv = utils.transformToCSV(json);
-
-        fs.writeFileSync('result.csv', csv.map(row => row.join(',')).join('\n'));
-        
-        console.log(chalk.green(`✅ ${options.json} transformed to result.csv`));
-
-    }
-    catch(e){
-
-        console.log(chalk.red('❌ The JSON is not valid.'));
-        process.exit(1);
-
-    }
-
-}
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Transform CSV into JSON
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if(options.csv){
-
-    try{
-
-        let rawdata = fs.readFileSync(options.csv);
+        let rawdata = fs.readFileSync(source);
         let csv = rawdata.toString().split(/\r\n|\n|\r/).map(line => line.split(','));
 
         utils.validateCSV(csv);
 
         let json = utils.transformToJSON(csv);
 
-        fs.writeFileSync('result.json', JSON.stringify(json, null, 2));
+        fs.writeFileSync(destination, JSON.stringify(json, null, 2));
         
-        console.log(chalk.green(`✅ ${options.csv} transformed to result.json`));
+        console.log(chalk.green(`✅ ${source} transformed to ${destination}`));
 
     }
     catch(e){
 
-        console.log(e);
+        console.log(chalk.red('❌ The CSV is not valid or does not exist.'));
+        process.exit(1);
 
-        console.log(chalk.red('❌ The CSV is not valid.'));
+    }
+
+}
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Defining the CSV generator
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function generateCSV(source, destination){
+
+    try{
+
+        let rawdata = fs.readFileSync(source);
+        let json = JSON.parse(rawdata);
+
+        utils.validateJSON(json);
+        
+        let csv = utils.transformToCSV(json);
+
+        fs.writeFileSync(destination, csv.map(row => row.join(',')).join('\n'));
+        
+        console.log(chalk.green(`✅ ${source} transformed to ${destination}`));
+
+    }
+    catch(e){
+
+        console.log(chalk.red('❌ The JSON is not valid or does not exist.'));
         process.exit(1);
 
     }
