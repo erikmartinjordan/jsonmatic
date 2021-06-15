@@ -1,6 +1,34 @@
 # Jsonmatic
 
-Transform a CSV into a JSON.
+![Jsonmatic](https://raw.githubusercontent.com/erikmartinjordan/jsonmatic/9efc86d10687689573b13915e7b30aaea243f6f4/src/Assets/Logo.svg)
+
+Transform a CSV into a JSON and vice versa.
+
+## Installation
+
+```
+npm i jsonmatic -g
+```
+
+## Use
+
+Transform CSV into JSON:
+
+```
+jsonmatic --csv input.csv
+```
+
+Transform JSON into CSV:
+
+```
+jsonmatic --json input.json
+```
+
+## Webapp
+
+You can use the webapp to transform the data without CLI. The webapp runs in your browser; **data isn't uploaded to any server**.
+
+### Input
 
 You have:
 
@@ -9,6 +37,8 @@ You have:
 | 1   | AP-7 | 42.02     | 2.82      | 🦄    |
 | 2   | C-32 | 41.35     | 2.09      | 🦧    |
 | 3   | B-20 | 41.44     | 2.18      | 🐰    |
+
+### Output
 
 You get:
 
@@ -40,6 +70,10 @@ You get:
     }
 }
 ```
+
+## Note
+
+The first column is reserved for unique keys. Use dot notation to create properties and subproperties.
 
 ## Author
 
