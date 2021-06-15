@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { validateJSON }               from '../Functions/utils';
+import { validateJSON }               from '../CLI/utils';
 
 const TextareaIndent = ({edit, setEdit, indent, json, setJson}) => {
 

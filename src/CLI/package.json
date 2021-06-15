@@ -1,6 +1,6 @@
 {
   "name": "jsonmatic",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Transform CSV (spreadhseet) into a JSON",
   "main": "index.js",
   "type": "module",
@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "bin":{
+  "bin": {
     "jsonmatic": "index.js"
   },
   "keywords": [

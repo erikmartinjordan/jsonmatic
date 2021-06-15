@@ -1,8 +1,8 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { configure }                          from '@testing-library/dom';
-import App                                    from '../Components/App';
-import firebase, { environment }              from '../Functions/Firebase';
-import { transformToJSON, validateCSV, validateJSON }      from '../Functions/utils';
+import { render, screen, fireEvent, waitFor }              from '@testing-library/react';
+import { configure }                                       from '@testing-library/dom';
+import App                                                 from '../Components/App';
+import firebase, { environment }                           from '../Functions/Firebase';
+import { transformToJSON, validateCSV, validateJSON }      from '../CLI/utils';
 import '@testing-library/jest-dom';
 
 configure({ asyncUtilTimeout: 5000 });

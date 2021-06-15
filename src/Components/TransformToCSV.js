@@ -1,7 +1,7 @@
 import React                           from 'react';
 import { ArrowLeftIcon, ArrowUpIcon }  from '@primer/octicons-react';
 import useWindowDimensions             from '../Functions/useWindowDimensions';
-import { transformToCSV }              from '../Functions/utils'; 
+import { transformToCSV }              from '../CLI/utils'; 
 
 const TransformToCSV = ({json, edit, setCsv}) => {
 
