@@ -1,10 +1,14 @@
 # Jsonmatic
 
-![Jsonmatic](https://raw.githubusercontent.com/erikmartinjordan/jsonmatic/9efc86d10687689573b13915e7b30aaea243f6f4/src/Assets/Logo.svg)
+<p align = "center"> 
+<img src = "https://raw.githubusercontent.com/erikmartinjordan/jsonmatic/9efc86d10687689573b13915e7b30aaea243f6f4/src/Assets/Logo.svg" width = "200"/>
+</p>
 
-Transform a CSV into a JSON and vice versa.
+The easiest way to transform a CSV into a JSON and vice versa. You can try the [webapp](https://tiempone.com) without installing any package. 
 
-## Installation
+However, if you like the CLI:
+
+## Install
 
 ```
 npm i jsonmatic -g

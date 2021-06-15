@@ -1,12 +1,13 @@
 {
   "name": "jsonmatic",
-  "version": "0.0.4",
-  "description": "Transform CSV (spreadhseet) into a JSON",
+  "version": "0.0.5",
+  "description": "⚗️ Transform a CSV (spreadsheet) into a JSON",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "prepublish": "cp ../../README.md README.md"
   },
   "bin": {
     "jsonmatic": "index.js"
