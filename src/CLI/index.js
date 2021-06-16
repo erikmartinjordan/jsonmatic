@@ -3,7 +3,7 @@ import chalk       from 'chalk';
 import path        from 'path';
 import fs          from 'fs';
 import { program } from 'commander';
-import * as utils  from '~utils.js';
+import * as utils  from './utils.js';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Defining the program
