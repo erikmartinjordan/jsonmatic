@@ -20,7 +20,7 @@ npm i jsonmatic -g
 
 ## Use
 
-## 1. Transform a CSV into JSON and viceversa:
+## 1. Transform a CSV into JSON and vice versa:
 
 ```
 jsonmatic transform <source> <destination>
