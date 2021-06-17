@@ -2,6 +2,7 @@ import React, { useState }                         from 'react';
 import { saveAs }                                  from 'file-saver';
 import UploadFiles                                 from './UploadFiles';
 import { DownloadIcon, GrabberIcon, GitMergeIcon } from '@primer/octicons-react';
+import { mergeMultipleJSONs }                      from '../CLI/utils';
 
 const MultipleReplaces = () => {
     
@@ -11,27 +12,7 @@ const MultipleReplaces = () => {
     
     const merge = () => {
 
-        const union = (objA, objB) => {
-
-            if(typeof objA === 'object'){
-        
-                let merged = {...objA};
-        
-                Object.keys(objB).forEach(key => {
-        
-                    merged[key] = merged[key] ? union(merged[key], objB[key]) : objB[key];
-        
-                });
-        
-                return merged;
-        
-            }
-            
-            return objA;
-        
-        }
-
-        let merged = jsonfiles.reduce((acc, {json}) => union(acc, json), null);
+        let merged = mergeMultipleJSONs(jsonfiles);
 
         setMerged(merged);
 

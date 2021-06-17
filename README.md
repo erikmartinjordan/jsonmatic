@@ -20,16 +20,28 @@ npm i jsonmatic -g
 
 ## Use
 
-Transform a CSV into JSON and viceversa:
+## 1. Transform a CSV into JSON and viceversa:
 
 ```
-jsonmatic <input> <output>
+jsonmatic transform <source> <destination>
 ```
 
 Example:
 
 ```
 jsonmatic data.json result.csv
+```
+
+## 2. Merge
+
+```
+jsonmatic merge <files...>
+```
+
+Example:
+
+```
+jsonmatic merge data_1.json data_2.json data_3.json
 ```
 
 ## Webapp

@@ -126,4 +126,35 @@ const transformToJSON = (csv) => {
 
 }
 
-export { transformToCSV, transformToJSON, validateCSV, validateJSON }
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Merge multiple JSONs into one
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+const mergeMultipleJSONs = (jsonfiles) => {
+
+    const union = (objA, objB) => {
+
+        if(typeof objA === 'object'){
+    
+            let merged = {...objA};
+    
+            Object.keys(objB).forEach(key => {
+    
+                merged[key] = merged[key] ? union(merged[key], objB[key]) : objB[key];
+    
+            });
+    
+            return merged;
+    
+        }
+        
+        return objA;
+    
+    }
+
+    let merged = jsonfiles.reduce((acc, {json}) => union(acc, json), null);
+
+    return merged;
+
+}
+
+export { transformToCSV, transformToJSON, validateCSV, validateJSON, mergeMultipleJSONs }
