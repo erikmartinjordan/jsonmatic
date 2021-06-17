@@ -1,3 +1,12 @@
+## 17.06.21 – CLI 
+
+![CLI screenshot](https://github.com/erikmartinjordan/Screenshots/blob/master/Captura%20de%20pantalla%202021-06-17%20a%20las%2011.27.29.png?raw=true)
+
+* CLI creation
+* Transform a CSV into a JSON and vice versa
+* Merge multiple JSONs
+
+
 ## 07.06.21 – Project restructuration
 
 ![Fixed screen issues mobile devices](https://github.com/erikmartinjordan/Screenshots/blob/master/Jun-07-2021%2012-42-31.gif?raw=true)
