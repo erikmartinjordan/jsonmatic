@@ -2,6 +2,7 @@ import React, { useState }                 from 'react';
 import { saveAs }                          from 'file-saver';
 import UploadFiles                         from './UploadFiles';
 import { DownloadIcon,  TriangleDownIcon } from '@primer/octicons-react';
+import { replaceMultipleJSONs }            from '../CLI/utils';
 
 const MultipleReplaces = () => {
     
@@ -14,47 +15,10 @@ const MultipleReplaces = () => {
     
     const replace = () => {
 
-        let numReplaces = 0;
-        
-        let jsonFilesReplaced = jsonfiles.map(({name, json}) => {
-            
-            let clone = {...json};
-            
-            let props = path.split('.');
-            
-            let val = props.slice(0    ).reduce((ref, prop) => ref = ref?.[prop], clone);
-            let ref = props.slice(0, -1).reduce((ref, prop) => ref = ref?.[prop], clone);
-            
-            let last = props.pop();
+        let res = replaceMultipleJSONs(path, currentValue, replaceValue, jsonfiles, operation);
 
-            let _currentValue = isNaN(currentValue) ? currentValue : parseFloat(currentValue);
-            let _replaceValue = isNaN(replaceValue) ? replaceValue : parseFloat(replaceValue);
-
-            let rule = {
-
-                'equal':   () => val === _currentValue,
-                'greater': () => val  >  _currentValue,
-                'lesser':  () => val  <  _currentValue
-
-            }[operation]();
-            
-            if(rule){
-
-                ref[last] = _replaceValue;
-                numReplaces ++;
-
-            }
-        
-            return {
-                name: name,
-                json: clone
-            };
-            
-        });
-
-
-        setJsonfiles(jsonFilesReplaced);
-        setNumReplaces(numReplaces);
+        setJsonfiles(res[0]);
+        setNumReplaces(res[1]);
         
     }
 

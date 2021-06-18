@@ -12,18 +12,23 @@ let { version } = JSON.parse(fs.readFileSync(new URL('./package.json', import.me
 
 program
     .version(version)
-    .description(console.log(chalk.cyan(`
 
-     ██╗███████╗ ██████╗ ███╗   ██╗███╗   ███╗ █████╗ ████████╗██╗ ██████╗
-     ██║██╔════╝██╔═══██╗████╗  ██║████╗ ████║██╔══██╗╚══██╔══╝██║██╔════╝
-     ██║███████╗██║   ██║██╔██╗ ██║██╔████╔██║███████║   ██║   ██║██║     
-██   ██║╚════██║██║   ██║██║╚██╗██║██║╚██╔╝██║██╔══██║   ██║   ██║██║     
-╚█████╔╝███████║╚██████╔╝██║ ╚████║██║ ╚═╝ ██║██║  ██║   ██║   ██║╚██████╗
- ╚════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝
+program
+    .option('-h, --help')
+    .action(options => {
 
-⚗️  https://github.com/erikmartinjordan/jsonmatic
- 
-`)));
+        console.log(chalk.cyan(``));
+        console.log(chalk.cyan(`     ██╗███████╗ ██████╗ ███╗   ██╗███╗   ███╗ █████╗ ████████╗██╗ ██████╗`));
+        console.log(chalk.cyan(`     ██║██╔════╝██╔═══██╗████╗  ██║████╗ ████║██╔══██╗╚══██╔══╝██║██╔════╝`));
+        console.log(chalk.cyan(`     ██║███████╗██║   ██║██╔██╗ ██║██╔████╔██║███████║   ██║   ██║██║ `));
+        console.log(chalk.cyan(`██   ██║╚════██║██║   ██║██║╚██╗██║██║╚██╔╝██║██╔══██║   ██║   ██║██║`));
+        console.log(chalk.cyan(`╚█████╔╝███████║╚██████╔╝██║ ╚████║██║ ╚═╝ ██║██║  ██║   ██║   ██║╚██████╗`));
+        console.log(chalk.cyan(` ╚════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝`));
+        console.log(chalk.cyan(`⚗️  https://github.com/erikmartinjordan/jsonmatic`));
+        console.log(chalk.cyan(``));
+        console.log(program.helpInformation());
+
+    })
 
 program
     .command('transform')
@@ -39,9 +44,26 @@ program
     });
 
 program
+    .command('replace')
+    .arguments('<property> <currentValue> <replaceValue> <files...>')
+    .option('-g, --greater', 'is greater than')
+    .option('-e, --equal', 'is equal to')
+    .option('-l, --lesser', 'is less than')
+    .description('↔️  replace a property in multiple JSON files')
+    .action((property, currentValue, replaceValue, files, options) => {
+
+        console.log('Replacing...');
+        if     (Object.keys(options).length !== 1)          console.log(chalk.red('❌ You must select only one option. Type jsonmatic --help to get more info.'));
+        else if(files.some(file => !file.endsWith('json'))) console.log(chalk.red('❌ The files are not valid.'));
+        else                                                generateReplace(property, currentValue, replaceValue, files, Object.keys(options)[0]);
+
+
+    });
+
+program
     .command('merge')
     .arguments('<files...>')
-    .description('➕ merge multiple JSON into one unique file')
+    .description('➕ merge multiple JSON files into one unique file')
     .action(files => {
 
         console.log('Generating files...');
@@ -49,10 +71,6 @@ program
         else console.log(chalk.red('❌ The files are not valid.'));
 
     });
-
-program
-    .command('help')
-    .description('🆘 display help for command')
 
 program
     .parse();
@@ -103,6 +121,36 @@ function generateCSV(source, destination){
         fs.writeFileSync(destination, csv.map(row => row.join(',')).join('\n'));
         
         console.log(chalk.green(`✅ ${source} was transformed into ${destination}`));
+
+    }
+    catch(e){
+
+        console.log(chalk.red(`❌ ${e}`));
+        process.exit(1);
+
+    }
+
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Defining the replace generator
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function generateReplace(property, currentValue, replaceValue, files, operation){
+
+    try{
+        
+        let jsonfiles = files.map(file => ({
+            
+            name: file,
+            json: JSON.parse(fs.readFileSync(file))
+        
+        }));
+
+        let [replaced, numReplaces] = utils.replaceMultipleJSONs(property, currentValue, replaceValue, jsonfiles, operation);
+
+        replaced.forEach(file =>  fs.writeFileSync(file.name, JSON.stringify(file.json, null, 2)));
+        
+        console.log(chalk.green(`✅ ${numReplaces} fields replaced.`));
 
     }
     catch(e){

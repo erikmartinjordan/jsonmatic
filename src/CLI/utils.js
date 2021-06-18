@@ -126,6 +126,54 @@ const transformToJSON = (csv) => {
 
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Replace multiple JSONs props
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+const replaceMultipleJSONs = (property, currentValue, replaceValue, jsonfiles, operation) => {
+    
+    let numReplaces = 0;
+        
+    let jsonFilesReplaced = jsonfiles.map(({name, json}) => {
+        
+        let clone = {...json};
+        
+        let props = property.split('.');
+        
+        let val = props.slice(0    ).reduce((ref, prop) => ref = ref?.[prop], clone);
+        let ref = props.slice(0, -1).reduce((ref, prop) => ref = ref?.[prop], clone);
+        
+        let last = props.pop();
+
+        let _currentValue = isNaN(currentValue) ? currentValue : parseFloat(currentValue);
+        let _replaceValue = isNaN(replaceValue) ? replaceValue : parseFloat(replaceValue);
+
+        let rule = {
+
+            'equal':   () => val === _currentValue,
+            'greater': () => val  >  _currentValue,
+            'lesser':  () => val  <  _currentValue
+
+        }[operation]();
+        
+        if(rule){
+
+            ref[last] = _replaceValue;
+            numReplaces ++;
+
+        }
+    
+        return {
+            name: name,
+            json: clone
+        };
+        
+    });
+
+    return [jsonFilesReplaced, numReplaces];
+
+}
+
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Merge multiple JSONs into one
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -157,4 +205,4 @@ const mergeMultipleJSONs = (jsonfiles) => {
 
 }
 
-export { transformToCSV, transformToJSON, validateCSV, validateJSON, mergeMultipleJSONs }
+export { transformToCSV, transformToJSON, validateCSV, validateJSON, mergeMultipleJSONs, replaceMultipleJSONs }
