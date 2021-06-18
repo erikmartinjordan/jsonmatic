@@ -1,18 +1,28 @@
-# Jsonmatic
-![License](https://img.shields.io/github/license/erikmartinjordan/jsonmatic)
-![Test](https://img.shields.io/github/workflow/status/erikmartinjordan/jsonmatic/deployToFirebase)
-
-The easiest way to transform a CSV into a JSON and vice versa. You can try the [webapp](https://tiempone.com) without installing any package. 
-
 <p align = "center"> 
-<img src = "https://raw.githubusercontent.com/erikmartinjordan/jsonmatic/9efc86d10687689573b13915e7b30aaea243f6f4/src/Assets/Logo.svg" width = "200"/>
+    <img src = "https://raw.githubusercontent.com/erikmartinjordan/jsonmatic/9efc86d10687689573b13915e7b30aaea243f6f4/src/Assets/Logo.svg" width = "200"/>
+</p>
+<p align = "center"> 
+    <img src = "https://img.shields.io/github/license/erikmartinjordan/jsonmatic"/>
+    <img src = "https://img.shields.io/github/workflow/status/erikmartinjordan/jsonmatic/deployToFirebase">
 </p>
 
+The easiest way to transform a CSV into a JSON and vice versa. You can try the [webapp](https://tiempone.com) without installing any package. The app runs in your browser; **data isn't uploaded to any server**.
 
+<p align = "center">
+    <img src = "https://github.com/erikmartinjordan/Screenshots/blob/master/May-12-2021%2013-05-23.gif?raw=true"/>
+</p>
 
-However, if you like the CLI:
+## Features
+
+* Transform a CSV into a JSON (and vice versa)
+* Beautify/uglify the JSON
+* Configure indentation
+* Replace/delete a property in multiple JSON files at once
+* Merge JSON files
 
 ## Install
+
+You can also install and use the app through the CLI:
 
 ```
 npm i jsonmatic -g
@@ -20,75 +30,22 @@ npm i jsonmatic -g
 
 ## Use
 
-## 1. Transform a CSV into JSON and vice versa:
+Transform a CSV into JSON and vice versa:
 
 ```
 jsonmatic transform <source> <destination>
 ```
 
-Example:
+Replace a property in multiple JSON files at once:
 
 ```
-jsonmatic data.json result.csv
+jsonmatic replace [options] <property> <currentValue> <replaceValue> <files...>
 ```
 
-## 2. Merge
+Merge multiple JSON files:
 
 ```
 jsonmatic merge <files...>
-```
-
-Example:
-
-```
-jsonmatic merge data_1.json data_2.json data_3.json
-```
-
-## Webapp
-
-You can use the webapp to transform the data without CLI. The webapp runs in your browser; **data isn't uploaded to any server**.
-
-### Input
-
-You have:
-
-| key | road | coord.lat | coord.lng | elem |
-|-----|------|-----------|-----------|------|
-| 1   | AP-7 | 42.02     | 2.82      | 🦄    |
-| 2   | C-32 | 41.35     | 2.09      | 🦧    |
-| 3   | B-20 | 41.44     | 2.18      | 🐰    |
-
-### Output
-
-You get:
-
-```javascript
-{
-    "1": {
-        "road": "AP-7",
-        "coord": {
-            "lat": 42.02,
-            "lng": 2.82
-        },
-        "elem": "🦄'"
-    },
-    "2": {
-        "road": "C-32",
-        "coord": {
-            "lat": 41.35,
-            "lng": 2.09
-        },
-        "elem": "🦧"
-    },
-    "3": {
-        "road": "B-20",
-        "coord": {
-            "lat": 41.44,
-            "lng": 2.18
-        },
-        "elem": "🐰"
-    }
-}
 ```
 
 ## Note
