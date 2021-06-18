@@ -1,6 +1,6 @@
 {
   "name": "jsonmatic",
-  "version": "0.0.9",
+  "version": "0.2.4",
   "description": "⚗️ Transform a CSV (spreadsheet) into a JSON",
   "main": "index.js",
   "type": "module",

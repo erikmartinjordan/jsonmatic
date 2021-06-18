@@ -1,3 +1,7 @@
+## 18.06.21 - Replace with the CLI
+
+* You can replace a property in multiple JSON files using the CLI
+
 ## 17.06.21 – CLI 
 
 ![CLI screenshot](https://github.com/erikmartinjordan/Screenshots/blob/master/Captura%20de%20pantalla%202021-06-17%20a%20las%2011.27.29.png?raw=true)
