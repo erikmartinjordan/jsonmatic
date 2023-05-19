@@ -6,7 +6,7 @@
     <img src = "https://img.shields.io/github/workflow/status/erikmartinjordan/jsonmatic/deployToFirebase">
 </p>
 
-The easiest way to transform a CSV into a JSON and vice versa. You can try the [webapp](https://https://jsonmatic-pro.web.app/) without installing any package. The app runs in your browser; **data isn't uploaded to any server**.
+The easiest way to transform a CSV into a JSON and vice versa. You can try the [webapp](https://jsonmatic-pro.web.app/) without installing any package. The app runs in your browser; **data isn't uploaded to any server**.
 
 <p align = "center">
     <img src = "https://github.com/erikmartinjordan/Screenshots/blob/master/May-12-2021%2013-05-23.gif?raw=true"/>
